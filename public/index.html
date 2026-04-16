@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Conformidade DCG — Monitoramento de Obrigações Legais</title>
+<meta name="description" content="Consulte seu CNPJ, verifique obrigações legais e regularize DTE, DJE e e-BEF. DCG Corretora de Seguros.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231565A8'/><text x='50' y='68' font-size='45' font-weight='900' fill='white' text-anchor='middle'>DCG</text></svg>">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',system-ui,sans-serif;color:#1E293B;background:#F0F4F8;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:#1565A8}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+nav{position:sticky;top:0;z-index:100;background:rgba(13,74,122,.97);backdrop-filter:blur(12px);padding:0 24px}
+nav .inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:10px;cursor:pointer}
+.logo-box{width:36px;height:36px;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;color:#1565A8;font-weight:900;font-size:13px}
+.logo span{font-weight:800;font-size:17px;color:#fff}
+.badge-admin{font-size:9px;background:#F59E0B;color:#fff;padding:2px 8px;border-radius:99px;font-weight:800;letter-spacing:1px}
+.badge-test{font-size:9px;background:#16A34A;color:#fff;padding:2px 8px;border-radius:99px;font-weight:800;letter-spacing:1px;margin-left:6px}
+.nav-links a{color:rgba(255,255,255,.7);padding:8px 14px;border-radius:8px;font-size:13px;font-weight:500;transition:all .2s;text-decoration:none}
+.nav-links a:hover,.nav-links a.active{background:rgba(255,255,255,.15);color:#fff}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:10px;font-size:14px;font-weight:700;border:none;cursor:pointer;transition:all .2s;font-family:inherit;text-decoration:none}
+.btn-primary{background:#1565A8;color:#fff}.btn-primary:hover{background:#0D4A7A}
+.btn-white{background:#fff;color:#1565A8}.btn-white:hover{background:#E8F1FA}
+.btn-outline{background:transparent;border:2px solid rgba(255,255,255,.4);color:#fff}.btn-outline:hover{background:rgba(255,255,255,.1)}
+.btn-success{background:#16A34A;color:#fff}.btn-success:hover{background:#15803D}
+.btn-warn{background:#F59E0B;color:#fff}.btn-warn:hover{background:#D97706}
+.btn-sm{padding:8px 16px;font-size:13px;border-radius:8px}
+.hero{background:linear-gradient(135deg,#1565A8,#0D4A7A);padding:60px 24px 80px;color:#fff;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:50%;background:rgba(255,255,255,.04)}
+.hero .container{position:relative;z-index:1}
+.hero .tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border-radius:99px;padding:6px 16px;margin-bottom:24px;font-size:13px;font-weight:600}
+.hero h1{font-size:clamp(28px,5vw,48px);font-weight:900;line-height:1.1;max-width:700px;margin-bottom:20px}
+.hero h1 em{color:#F59E0B;font-style:normal}
+.hero p{font-size:17px;opacity:.85;max-width:600px;line-height:1.7;margin-bottom:32px}
+.hero .buttons{display:flex;gap:12px;flex-wrap:wrap}
+section{padding:60px 24px}
+.section-tag{display:inline-block;background:#E8F1FA;color:#1565A8;padding:4px 16px;border-radius:99px;font-size:12px;font-weight:700;margin-bottom:12px}
+.section-title{font-size:clamp(22px,4vw,36px);font-weight:900;margin-bottom:12px}
+.section-sub{color:#64748B;max-width:600px;margin:0 auto;line-height:1.6}
+.card{background:#fff;border-radius:16px;padding:24px;border:1px solid #E2E8F0;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.step-num{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:99px;background:#1565A8;color:#fff;font-weight:900;font-size:14px;flex-shrink:0}
+.step-row{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid #E2E8F0}
+.step-row:last-child{border-bottom:none}
+.step-row h4{font-weight:700;font-size:15px;margin-bottom:4px}
+.step-row p{font-size:14px;color:#64748B;line-height:1.6}
+.step-row a{font-weight:700;font-size:13px}
+.status-ok{color:#16A34A;font-weight:700}.status-warn{color:#EAB308;font-weight:700}.status-danger{color:#DC2626;font-weight:700}
+.obrig-card{border-left:4px solid #1565A8;transition:transform .2s}
+.obrig-card:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.obrig-card.urgente{border-left-color:#DC2626;background:#FEF2F2}
+.obrig-card.atencao{border-left-color:#F59E0B;background:#FFFBEB}
+.obrig-card h3{font-size:20px;font-weight:900;margin-bottom:2px}
+.obrig-card .tipo{font-size:13px;color:#64748B;margin-bottom:10px}
+.obrig-card .prazo{display:inline-block;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;margin-bottom:12px}
+.prazo-red{background:#FEE2E2;color:#DC2626}.prazo-yellow{background:#FEF9C3;color:#92400E}.prazo-green{background:#DCFCE7;color:#166534}
+.obrig-card p{font-size:14px;line-height:1.7;margin-bottom:12px}
+.obrig-card .penal{font-size:12px;color:#DC2626;font-weight:600;margin-bottom:16px}
+.cnpj-input{flex:1;min-width:200px;padding:14px 16px;border-radius:10px;border:2px solid #E2E8F0;font-size:18px;font-family:monospace;font-weight:700;outline:none;transition:border .2s}
+.cnpj-input:focus{border-color:#1565A8}
+.cnpj-result .header{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.cnpj-result .icon{width:48px;height:48px;border-radius:12px;background:#E8F1FA;display:flex;align-items:center;justify-content:center;font-size:24px}
+.cnpj-result .fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.cnpj-result .field label{font-size:11px;color:#64748B;font-weight:600;text-transform:uppercase;letter-spacing:.5px;display:block}
+.cnpj-result .field p{font-size:14px;font-weight:600}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:2px 10px;border-radius:99px;font-size:11px;font-weight:700}
+.badge-ok{background:#DCFCE7;color:#16A34A}.badge-warn{background:#FEF9C3;color:#EAB308}.badge-danger{background:#FEE2E2;color:#DC2626}
+.badge::before{content:'';width:6px;height:6px;border-radius:99px}
+.badge-ok::before{background:#16A34A}.badge-warn::before{background:#EAB308}.badge-danger::before{background:#DC2626}
+.alert-box{padding:16px 20px;border-radius:12px;display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;font-size:14px;line-height:1.6}
+.alert-info{background:#E8F1FA;border:1px solid #1565A830}.alert-warn{background:#FFFBEB;border:1px solid #F59E0B30}.alert-danger{background:#FEF2F2;border:1px solid #DC262630}.alert-success{background:#F0FDF4;border:1px solid #16A34A30}
+.dash-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:32px}
+.kpi{text-align:center;padding:20px}
+.kpi .value{font-size:36px;font-weight:900}.kpi .label{font-size:12px;color:#64748B;font-weight:600;text-transform:uppercase;margin-top:8px;letter-spacing:.5px}
+.check-item{display:flex;align-items:center;gap:16px;padding:16px 20px;cursor:pointer;border-left:4px solid #3B82F6}
+.check-item:hover{box-shadow:0 4px 12px rgba(0,0,0,.06)}
+.check-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.faq-item{overflow:hidden;margin-bottom:8px}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border:none;background:none;cursor:pointer;font-size:15px;font-weight:700;text-align:left;font-family:inherit;color:#1E293B}
+.faq-a{padding:0 20px 20px;font-size:14px;color:#64748B;line-height:1.8;border-top:1px solid #E2E8F0;padding-top:16px;display:none}
+.faq-item.open .faq-a{display:block}
+.faq-item.open .faq-toggle{transform:rotate(45deg)}
+.faq-toggle{font-size:20px;transition:transform .2s;flex-shrink:0;margin-left:12px}
+.link-card{display:flex;align-items:center;gap:12px;padding:12px;border-radius:10px;border:1px solid #E2E8F0;color:#1E293B;transition:all .2s}
+.link-card:hover{border-color:#1565A8;text-decoration:none;transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.06)}
+.link-icon{width:36px;height:36px;border-radius:8px;background:#E8F1FA;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#1565A8;font-size:16px}
+.link-card .title{font-weight:700;font-size:13px}
+.link-card .desc{font-size:11px;color:#64748B}
+footer{background:#1E293B;color:#fff;padding:48px 24px 24px}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px;max-width:1200px;margin:0 auto}
+.footer-logo{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.footer-logo .box{width:32px;height:32px;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;color:#1565A8;font-weight:900;font-size:11px}
+footer h4{font-weight:700;font-size:14px;margin-bottom:16px}
+footer p,footer a{font-size:13px;opacity:.7;line-height:2;color:#fff}
+footer a:hover{opacity:1}
+.footer-bottom{max-width:1200px;margin:32px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-bottom span{font-size:12px;opacity:.5}
+.page{display:none}.page.active{display:block}
+@media(max-width:768px){.nav-links{display:none}.grid-3,.grid-2{grid-template-columns:1fr}.hero h1{font-size:26px}}
+</style>
+</head>
+<body>
+<nav><div class="inner"><div class="logo" onclick="showPage('landing')"><div class="logo-box">DCG</div><span>Conformidade DCG</span><span class="badge-admin">ADMIN</span><span class="badge-test">TESTE</span></div><div class="nav-links"><a href="#" class="active" onclick="showPage('landing');return false">Início</a><a href="#" onclick="showPage('consulta');return false">Consulta CNPJ</a><a href="#" onclick="showPage('regularizar');return false">Como Regularizar</a><a href="#" onclick="showPage('checklist');return false">Checklist</a><a href="#" onclick="showPage('alertas');return false">Alertas</a><a href="#" onclick="showPage('tutorial');return false">Ajuda</a><a href="#" onclick="showPage('lgpd');return false">LGPD</a><a href="/app.html" style="background:#F59E0B;color:#fff;font-weight:700">🔐 Entrar</a></div></div></nav>
+
+<div id="page-landing" class="page active">
+<div class="hero"><div class="container">
+<div class="tag">⚠️ Obrigações legais 2026 — Consulte seu CNPJ agora</div>
+<h1>Sua empresa está em <em>conformidade</em> com a Receita Federal?</h1>
+<p>Consulte gratuitamente a situação do seu CNPJ, verifique pendências em DTE, DJE e e-BEF, e siga o passo a passo para regularizar tudo antes dos prazos.</p>
+<div class="buttons">
+<button class="btn btn-white" onclick="showPage('consulta')">🔍 Consultar Meu CNPJ</button>
+<button class="btn btn-outline" onclick="showPage('regularizar')">📋 Como Regularizar</button>
+</div>
+</div></div>
+
+<section style="background:#1E293B;color:#fff;padding:40px 24px">
+<div class="container"><div style="max-width:900px;margin:0 auto">
+<h2 style="font-size:22px;font-weight:900;margin-bottom:20px;text-align:center">📜 Resumo das Novas Obrigações — O que mudou em 2026</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px">
+<div style="background:rgba(255,255,255,.08);border-radius:12px;padding:20px;border-left:4px solid #DC2626">
+<h4 style="font-weight:800;margin-bottom:6px">📬 DTE — Domicílio Tributário</h4>
+<p style="font-size:13px;opacity:.8;line-height:1.6">Toda empresa deve se cadastrar no e-CAC da Receita Federal para receber intimações eletrônicas. Sem cadastro, a Receita presume ciência — seus prazos correm mesmo sem você saber.</p>
+<p style="font-size:12px;margin-top:8px;color:#F87171"><strong>IN RFB 2.154/2023</strong> · Obrigatório desde 01/01/2026</p>
+</div>
+<div style="background:rgba(255,255,255,.08);border-radius:12px;padding:20px;border-left:4px solid #F59E0B">
+<h4 style="font-weight:800;margin-bottom:6px">⚖️ DJE — Domicílio Judicial</h4>
+<p style="font-size:13px;opacity:.8;line-height:1.6">Cadastro obrigatório no portal do CNJ para citações judiciais. Sem ele, citações são feitas por edital e você pode perder processos por revelia automática.</p>
+<p style="font-size:12px;margin-top:8px;color:#FBBF24"><strong>Lei 14.195/2021 + Res. CNJ 455/2022</strong> · Prazo: 31/03/2026</p>
+</div>
+<div style="background:rgba(255,255,255,.08);border-radius:12px;padding:20px;border-left:4px solid #3B82F6">
+<h4 style="font-weight:800;margin-bottom:6px">👤 e-BEF — Beneficiário Final</h4>
+<p style="font-size:13px;opacity:.8;line-height:1.6">Declaração obrigatória de quem controla a empresa (sócios com mais de 25% ou controle significativo). Deve ser informado à Receita Federal.</p>
+<p style="font-size:12px;margin-top:8px;color:#60A5FA"><strong>IN RFB 1.634/2016</strong> · Cronograma progressivo até 2028</p>
+</div></div>
+<div style="text-align:center;margin-top:24px">
+<p style="font-size:14px;opacity:.7;margin-bottom:16px">O não cumprimento pode resultar em <strong>multas de até R$50 milhões</strong>, suspensão do CNPJ e perda de prazos judiciais.</p>
+<button class="btn btn-sm" style="background:#fff;color:#1E293B;font-weight:800" onclick="showPage('regularizar')">📋 Ver passo a passo completo para regularizar →</button>
+</div></div></div></section>
+
+<section style="background:#fff"><div class="container" style="text-align:center">
+<span class="section-tag">Obrigações Críticas 2026</span>
+<h2 class="section-title">Três obrigações que podem <span style="color:#DC2626">paralisar</span> sua empresa</h2>
+<p class="section-sub" style="margin-bottom:48px">Clique em cada uma para ver o passo a passo de regularização.</p>
+<div class="grid-3" style="text-align:left">
+
+<div class="card obrig-card urgente" style="cursor:pointer" onclick="showPage('regularizar')">
+<h3>🔴 DTE</h3><div class="tipo">Domicílio Tributário Eletrônico — Receita Federal</div>
+<div class="prazo prazo-red">⚠️ OBRIGATÓRIO — Vigente desde 01/01/2026</div>
+<p>Caixa postal oficial da Receita Federal. Se você não se cadastrou, a Receita considera que você recebeu as intimações mesmo assim — e os prazos correm!</p>
+<div class="penal">Penalidade: Multa R$500–R$1.500/mês + perda de prazos de defesa</div>
+<span class="btn btn-sm btn-primary">Ver passo a passo para cadastrar →</span>
+</div>
+
+<div class="card obrig-card urgente" style="cursor:pointer" onclick="showPage('regularizar')">
+<h3>🔴 DJE</h3><div class="tipo">Domicílio Judicial Eletrônico — CNJ</div>
+<div class="prazo prazo-red">⚠️ PRAZO: 31/03/2026 (pode ter passado!)</div>
+<p>Cadastro no CNJ para citações judiciais. Sem ele, o juiz publica no edital e você pode perder um processo sem nem saber!</p>
+<div class="penal">Penalidade: Citação por edital — revelia automática (perda do processo)</div>
+<span class="btn btn-sm btn-primary">Ver passo a passo para cadastrar →</span>
+</div>
+
+<div class="card obrig-card atencao" style="cursor:pointer" onclick="showPage('regularizar')">
+<h3>🟡 e-BEF</h3><div class="tipo">Declaração de Beneficiário Final — Receita Federal</div>
+<div class="prazo prazo-yellow">⏰ Vigente — Cronograma progressivo até 2028</div>
+<p>Declaração das pessoas físicas que controlam a empresa. Obrigatório conforme o faturamento e tipo de entidade.</p>
+<div class="penal">Penalidade: Suspensão do CNPJ</div>
+<span class="btn btn-sm btn-warn">Ver passo a passo para declarar →</span>
+</div>
+</div></div></section>
+
+<section><div class="container" style="text-align:center">
+<span class="section-tag">Diagnóstico Rápido</span>
+<h2 class="section-title">Consulte seu CNPJ agora — é grátis</h2>
+<p class="section-sub" style="margin-bottom:32px">Veja a situação cadastral da sua empresa na Receita Federal e descubra o que precisa atualizar.</p>
+<div class="card" style="max-width:600px;margin:0 auto">
+<div style="display:flex;gap:12px;flex-wrap:wrap">
+<input type="text" id="cnpj-home" class="cnpj-input" placeholder="00.000.000/0000-00" maxlength="18" onkeydown="if(event.key==='Enter'){document.getElementById('cnpj-input').value=this.value;showPage('consulta');setTimeout(consultarCNPJ,300)}">
+<button class="btn btn-primary" onclick="document.getElementById('cnpj-input').value=document.getElementById('cnpj-home').value;showPage('consulta');setTimeout(consultarCNPJ,300)">🔍 Consultar</button>
+</div>
+</div>
+</div></section>
+
+<div style="background:linear-gradient(135deg,#1565A8,#0D4A7A);padding:48px 24px;text-align:center;color:#fff">
+<h2 style="font-size:clamp(20px,4vw,32px);font-weight:900;margin-bottom:8px">Precisa de ajuda para regularizar?</h2>
+<p style="font-size:16px;opacity:.8;max-width:500px;margin:0 auto 24px">A DCG Corretora tem mais de 25 anos de experiência. Fale com um consultor.</p>
+<a href="https://wa.me/5511930759163?text=Olá! Preciso de ajuda para regularizar meu CNPJ." target="_blank" class="btn btn-white">📞 WhatsApp: (11) 93075-9163</a>
+</div>
+</div>
+<div id="page-consulta" class="page">
+<section><div class="container">
+<h1 style="font-size:28px;font-weight:900;margin-bottom:4px">🔍 Consulta CNPJ — Dados Reais da Receita Federal</h1>
+<p style="color:#64748B;font-size:14px;margin-bottom:8px">Os dados abaixo vêm diretamente da ReceitaWS (base oficial). Confira se estão corretos e atualizados.</p>
+<div class="alert-box alert-info" style="margin-bottom:24px">💡 <strong>Importante:</strong> Se os dados (telefone, e-mail, endereço) estiverem desatualizados, siga as instruções abaixo para corrigir diretamente no portal da Receita Federal.</div>
+
+<div class="card" style="max-width:800px;margin:0 auto;margin-bottom:24px">
+<div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap">
+<input type="text" id="cnpj-input" class="cnpj-input" placeholder="00.000.000/0000-00" maxlength="18" onkeydown="if(event.key==='Enter')consultarCNPJ()">
+<button class="btn btn-primary" onclick="consultarCNPJ()" id="cnpj-btn">🔍 Consultar na Receita</button>
+</div>
+<div id="cnpj-error" style="display:none;background:#FEF2F2;border:1px solid #FECACA;border-radius:10px;padding:12px;color:#DC2626;font-size:13px;font-weight:600;margin-bottom:12px"></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<button class="btn btn-sm" style="background:#F1F5F9;color:#64748B" onclick="document.getElementById('cnpj-input').value='16.383.565/0001-35';consultarCNPJ()">Testar: DCG</button>
+<button class="btn btn-sm" style="background:#F1F5F9;color:#64748B" onclick="document.getElementById('cnpj-input').value='33.000.167/0001-01';consultarCNPJ()">Testar: Petrobras</button>
+</div>
+</div>
+
+<div id="cnpj-result" class="card cnpj-result" style="max-width:800px;margin:0 auto;display:none"></div>
+
+<div id="cnpj-actions" style="display:none;max-width:800px;margin:24px auto 0">
+<div class="card" style="border-left:4px solid #F59E0B;background:#FFFBEB">
+<h3 style="font-weight:800;font-size:16px;margin-bottom:12px">📝 Dados desatualizados? Veja como corrigir:</h3>
+<div class="step-row"><div class="step-num">1</div><div><h4>Acesse o portal e-CAC da Receita Federal</h4><p>Entre com certificado digital ou conta Gov.br nível Prata/Ouro.</p><a href="https://cav.receita.fazenda.gov.br/" target="_blank">Acessar e-CAC →</a></div></div>
+<div class="step-row"><div class="step-num">2</div><div><h4>Vá em "Cadastros" → "Consulta/Atualização Cadastral"</h4><p>Selecione o CNPJ e clique em "Alterar dados cadastrais".</p></div></div>
+<div class="step-row"><div class="step-num">3</div><div><h4>Atualize telefone, e-mail e endereço</h4><p>Corrija os campos desatualizados. O e-mail é especialmente importante para receber comunicações do DTE.</p></div></div>
+<div class="step-row"><div class="step-num">4</div><div><h4>Transmita o DBE/CNPJ</h4><p>Após preencher, gere o Documento Básico de Entrada e protocole na Junta Comercial ou Cartório.</p><a href="https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/cadastros/cnpj" target="_blank">Guia completo da Receita Federal →</a></div></div>
+</div>
+</div>
+</div></section></div>
+
+<div id="page-regularizar" class="page">
+<section><div class="container" style="max-width:900px;margin:0 auto">
+<h1 style="font-size:28px;font-weight:900;margin-bottom:4px">📋 Como Regularizar sua Empresa — Passo a Passo</h1>
+<p style="color:#64748B;font-size:14px;margin-bottom:32px">Instruções claras e links oficiais para cada obrigação. Sem juridiquês!</p>
+
+<div class="alert-box alert-danger">🚨 <strong>URGENTE:</strong> O prazo do DJE era 31/03/2026. Se sua empresa ainda não se cadastrou, faça AGORA para evitar revelia em processos judiciais.</div>
+
+<!-- DTE -->
+<div class="card" style="margin-bottom:20px;border-left:4px solid #DC2626">
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+<span style="font-size:28px">📬</span>
+<div><h2 style="font-size:22px;font-weight:900">DTE — Domicílio Tributário Eletrônico</h2><p style="font-size:13px;color:#64748B">Receita Federal · IN RFB 2.154/2023 · Obrigatório desde 01/01/2026</p></div>
+</div>
+<div class="alert-box alert-warn">⚠️ Sem o DTE, a Receita considera que você recebeu intimações mesmo sem abrir. Os prazos correm automaticamente!</div>
+<h4 style="font-weight:800;margin-bottom:12px">Passo a passo para cadastrar:</h4>
+<div class="step-row"><div class="step-num">1</div><div><h4>Acesse o portal e-CAC</h4><p>Entre em <a href="https://cav.receita.fazenda.gov.br/" target="_blank">cav.receita.fazenda.gov.br</a> com seu certificado digital (e-CNPJ) ou conta Gov.br nível Prata ou Ouro.</p></div></div>
+<div class="step-row"><div class="step-num">2</div><div><h4>Navegue até "Caixa Postal"</h4><p>No menu principal, clique em <strong>"Caixa Postal"</strong> ou procure por <strong>"Domicílio Tributário Eletrônico"</strong>.</p></div></div>
+<div class="step-row"><div class="step-num">3</div><div><h4>Aceite o Termo de Adesão ao DTE</h4><p>Leia o termo e clique em <strong>"Aceitar"</strong>. A partir daí, todas as comunicações da Receita serão enviadas eletronicamente.</p></div></div>
+<div class="step-row"><div class="step-num">4</div><div><h4>Configure alertas por e-mail</h4><p>Ative a notificação por e-mail para ser avisado quando chegar nova mensagem na Caixa Postal. Use um e-mail que você confere diariamente!</p></div></div>
+<div class="step-row"><div class="step-num">5</div><div><h4>Verifique regularmente</h4><p>Acesse a Caixa Postal pelo menos 1x por semana. Mensagens não lidas podem gerar intimações tácitas (você perde o prazo).</p></div></div>
+<div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap">
+<a href="https://cav.receita.fazenda.gov.br/" target="_blank" class="btn btn-sm btn-primary">Acessar e-CAC →</a>
+<a href="https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/comunicacao-eletronica" target="_blank" class="btn btn-sm btn-outline" style="border-color:#1565A8;color:#1565A8">Guia oficial da Receita →</a>
+</div>
+</div>
+
+<!-- DJE -->
+<div class="card" style="margin-bottom:20px;border-left:4px solid #DC2626">
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+<span style="font-size:28px">⚖️</span>
+<div><h2 style="font-size:22px;font-weight:900">DJE — Domicílio Judicial Eletrônico</h2><p style="font-size:13px;color:#64748B">CNJ · Lei 14.195/2021 + Resolução CNJ 455/2022 · Prazo: 31/03/2026</p></div>
+</div>
+<div class="alert-box alert-danger">🚨 O prazo era 31/03/2026. Se não se cadastrou, faça IMEDIATAMENTE! Sem o DJE, citações judiciais são feitas por edital — você pode perder processos sem saber.</div>
+<h4 style="font-weight:800;margin-bottom:12px">Passo a passo para cadastrar:</h4>
+<div class="step-row"><div class="step-num">1</div><div><h4>Acesse o portal do DJE</h4><p>Entre em <a href="https://domicilio-eletronico.cnj.jus.br/" target="_blank">domicilio-eletronico.cnj.jus.br</a></p></div></div>
+<div class="step-row"><div class="step-num">2</div><div><h4>Faça login com Gov.br</h4><p>Use sua conta Gov.br (nível Prata ou Ouro). Se não tem, crie em <a href="https://sso.acesso.gov.br/" target="_blank">acesso.gov.br</a>.</p></div></div>
+<div class="step-row"><div class="step-num">3</div><div><h4>Vincule o CNPJ da empresa</h4><p>Selecione "Pessoa Jurídica", informe o CNPJ e confirme a vinculação. Você precisa ter poderes de representação (sócio-administrador).</p></div></div>
+<div class="step-row"><div class="step-num">4</div><div><h4>Cadastre o e-mail de notificação</h4><p>Informe um e-mail válido que será usado para avisar quando houver citações ou intimações judiciais.</p></div></div>
+<div class="step-row"><div class="step-num">5</div><div><h4>Confirme e acesse regularmente</h4><p>Após o cadastro, acesse o portal periodicamente. Citações têm prazo de 3 dias úteis após a disponibilização!</p></div></div>
+<div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap">
+<a href="https://domicilio-eletronico.cnj.jus.br/" target="_blank" class="btn btn-sm btn-primary">Acessar Portal DJE →</a>
+<a href="https://www.cnj.jus.br/sistemas/domicilio-judicial-eletronico/" target="_blank" class="btn btn-sm btn-outline" style="border-color:#1565A8;color:#1565A8">Guia do CNJ →</a>
+</div>
+</div>
+
+<!-- e-BEF -->
+<div class="card" style="margin-bottom:20px;border-left:4px solid #F59E0B">
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+<span style="font-size:28px">👤</span>
+<div><h2 style="font-size:22px;font-weight:900">e-BEF — Declaração de Beneficiário Final</h2><p style="font-size:13px;color:#64748B">Receita Federal · IN RFB 1.634/2016 (atualizada) · Cronograma até 2028</p></div>
+</div>
+<div class="alert-box alert-warn">⏰ Obrigatório conforme cronograma progressivo. Empresas com participação de estrangeiros ou estruturas complexas devem priorizar.</div>
+<h4 style="font-weight:800;margin-bottom:12px">Passo a passo para declarar:</h4>
+<div class="step-row"><div class="step-num">1</div><div><h4>Acesse o Coletor Nacional via e-CAC</h4><p>Entre em <a href="https://cav.receita.fazenda.gov.br/" target="_blank">cav.receita.fazenda.gov.br</a> com certificado digital.</p></div></div>
+<div class="step-row"><div class="step-num">2</div><div><h4>Navegue até "Cadastros" → "Beneficiário Final"</h4><p>Procure a opção de declaração de beneficiário final no menu de cadastros.</p></div></div>
+<div class="step-row"><div class="step-num">3</div><div><h4>Informe os dados do beneficiário final</h4><p>Identifique a(s) pessoa(s) física(s) que detêm o controle efetivo da empresa (sócios com mais de 25% ou controle significativo).</p></div></div>
+<div class="step-row"><div class="step-num">4</div><div><h4>Transmita a declaração</h4><p>Confirme os dados e transmita. A declaração deve ser atualizada sempre que houver alteração no quadro societário.</p></div></div>
+<div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap">
+<a href="https://cav.receita.fazenda.gov.br/" target="_blank" class="btn btn-sm btn-warn">Acessar e-CAC →</a>
+<a href="https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/cadastros/cnpj/beneficiario-final" target="_blank" class="btn btn-sm btn-outline" style="border-color:#F59E0B;color:#92400E">Guia da Receita →</a>
+</div>
+</div>
+
+<!-- Outras obrigações resumidas -->
+<div class="card" style="margin-bottom:20px">
+<h2 style="font-size:20px;font-weight:900;margin-bottom:16px">📚 Outras Obrigações — Links Rápidos</h2>
+<div class="grid-2">
+<a href="https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/declaracoes-e-demonstrativos/ecf" target="_blank" class="link-card"><div class="link-icon">📊</div><div><div class="title">ECF — Escrituração Contábil Fiscal</div><div class="desc">Anual — até julho · IN RFB 2.004/2021</div></div></a>
+<a href="http://sped.rfb.gov.br/" target="_blank" class="link-card"><div class="link-icon">📒</div><div><div class="title">ECD — Escrituração Contábil Digital</div><div class="desc">Anual — até maio · SPED</div></div></a>
+<a href="https://www.gov.br/receitafederal/pt-br" target="_blank" class="link-card"><div class="link-icon">📋</div><div><div class="title">DCTF — Débitos e Créditos Tributários</div><div class="desc">Mensal — 15o dia útil do 2o mês</div></div></a>
+<a href="https://www8.receita.fazenda.gov.br/SimplesNacional/" target="_blank" class="link-card"><div class="link-icon">🏪</div><div><div class="title">DEFIS — Simples Nacional</div><div class="desc">Anual — até 31 de março</div></div></a>
+<a href="https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/esocial" target="_blank" class="link-card"><div class="link-icon">👷</div><div><div class="title">eSocial / RAIS</div><div class="desc">Contínuo — obrigações trabalhistas</div></div></a>
+<a href="https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/seguranca-e-saude-no-trabalho/normas-regulamentadoras" target="_blank" class="link-card"><div class="link-icon">🦺</div><div><div class="title">PGR/NR-1 + PCMSO/NR-7</div><div class="desc">Permanente — segurança do trabalho</div></div></a>
+<a href="https://www.gov.br/anpd/pt-br" target="_blank" class="link-card"><div class="link-icon">🔒</div><div><div class="title">LGPD — Proteção de Dados</div><div class="desc">Permanente — Lei 13.709/2018</div></div></a>
+</div>
+</div>
+</div></section></div>
+
+<div id="page-checklist" class="page">
+<section><div class="container">
+<h1 style="font-size:28px;font-weight:900;margin-bottom:4px">✅ Checklist de Conformidade</h1>
+<p style="color:#64748B;font-size:14px;margin-bottom:8px">Marque as obrigações que sua empresa já cumpre. Score calculado automaticamente.</p>
+<div class="alert-box alert-info">💡 Clique em cada item para alternar: <strong style="color:#DC2626">Pendente</strong> → <strong style="color:#EAB308">Em andamento</strong> → <strong style="color:#16A34A">Conforme</strong></div>
+<div id="checklist-score" style="text-align:center;margin:24px 0"><div class="value" style="font-size:48px;font-weight:900">0</div><div class="label" style="font-size:12px;color:#64748B;font-weight:600;text-transform:uppercase">Score de Conformidade (0–100)</div></div>
+<div id="checklist-items" style="display:flex;flex-direction:column;gap:12px"></div>
+</div></section></div>
+
+<div id="page-alertas" class="page">
+<section><div class="container">
+<h1 style="font-size:28px;font-weight:900;margin-bottom:4px">🔔 Central de Alertas</h1>
+<p style="color:#64748B;font-size:14px;margin-bottom:24px">Prazos críticos e mudanças regulatórias que afetam sua empresa.</p>
+<div style="display:flex;flex-direction:column;gap:12px">
+<div class="card" style="border-left:4px solid #DC2626;display:flex;align-items:center;gap:16px;flex-wrap:wrap"><div style="font-size:24px">🚨</div><div style="flex:1"><div style="font-weight:700;font-size:15px">DJE — Prazo 31/03/2026 pode ter expirado!</div><div style="font-size:13px;color:#64748B;margin-top:2px">Se ainda não se cadastrou, faça imediatamente em <a href="https://domicilio-eletronico.cnj.jus.br/" target="_blank">domicilio-eletronico.cnj.jus.br</a></div></div><span class="badge badge-danger">Urgente</span></div>
+<div class="card" style="border-left:4px solid #DC2626;display:flex;align-items:center;gap:16px;flex-wrap:wrap"><div style="font-size:24px">🚨</div><div style="flex:1"><div style="font-weight:700;font-size:15px">DTE — Verifique sua Caixa Postal na Receita Federal</div><div style="font-size:13px;color:#64748B;margin-top:2px">Mensagens não lidas geram ciência tácita. <a href="https://cav.receita.fazenda.gov.br/" target="_blank">Acesse o e-CAC agora</a></div></div><span class="badge badge-danger">Urgente</span></div>
+<div class="card" style="border-left:4px solid #F59E0B;display:flex;align-items:center;gap:16px;flex-wrap:wrap"><div style="font-size:24px">⚠️</div><div style="flex:1"><div style="font-weight:700;font-size:15px">ECF — Entrega anual em julho. Prepare a documentação.</div><div style="font-size:13px;color:#64748B;margin-top:2px">Converse com seu contador e comece a organizar os documentos agora.</div></div><span class="badge badge-warn">Atenção</span></div>
+<div class="card" style="border-left:4px solid #F59E0B;display:flex;align-items:center;gap:16px;flex-wrap:wrap"><div style="font-size:24px">⚠️</div><div style="flex:1"><div style="font-weight:700;font-size:15px">PGR/NR-1 — Fiscalização intensificada em SP</div><div style="font-size:13px;color:#64748B;margin-top:2px">Empresas sem PGR podem ser multadas. <a href="https://www.dcgrhsemriscos.business/" target="_blank">Use nosso diagnóstico gratuito</a></div></div><span class="badge badge-warn">Atenção</span></div>
+<div class="card" style="border-left:4px solid #F59E0B;display:flex;align-items:center;gap:16px;flex-wrap:wrap"><div style="font-size:24px">⚠️</div><div style="flex:1"><div style="font-weight:700;font-size:15px">e-BEF — Cronograma progressivo em andamento</div><div style="font-size:13px;color:#64748B;margin-top:2px">Verifique se sua empresa está no cronograma 2026 conforme faturamento.</div></div><span class="badge badge-warn">Atenção</span></div>
+</div></div></section></div>
+<div id="page-tutorial" class="page">
+<section><div class="container" style="max-width:800px;margin:0 auto">
+<h1 style="font-size:28px;font-weight:900;margin-bottom:4px">❓ Central de Ajuda</h1>
+<p style="color:#64748B;font-size:14px;margin-bottom:32px">Linguagem simples, sem juridiquês. Se ainda tiver dúvida, fale conosco pelo WhatsApp.</p>
+
+<div class="card" style="background:linear-gradient(135deg,#1565A8,#0D4A7A);color:#fff;border:none;margin-bottom:24px">
+<h3 style="font-size:20px;font-weight:900;margin-bottom:16px">🚀 Começando em 3 Passos</h3>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px">
+<div style="background:rgba(255,255,255,.1);border-radius:12px;padding:16px"><div style="width:32px;height:32px;border-radius:99px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-weight:900;margin-bottom:8px">1</div><h5 style="font-weight:800;margin-bottom:4px">Consulte seu CNPJ</h5><p style="font-size:13px;opacity:.8">Vá em "Consulta CNPJ" e veja como está sua empresa na Receita Federal.</p></div>
+<div style="background:rgba(255,255,255,.1);border-radius:12px;padding:16px"><div style="width:32px;height:32px;border-radius:99px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-weight:900;margin-bottom:8px">2</div><h5 style="font-weight:800;margin-bottom:4px">Veja o que precisa fazer</h5><p style="font-size:13px;opacity:.8">Em "Como Regularizar", siga o passo a passo de cada obrigação com links oficiais.</p></div>
+<div style="background:rgba(255,255,255,.1);border-radius:12px;padding:16px"><div style="width:32px;height:32px;border-radius:99px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-weight:900;margin-bottom:8px">3</div><h5 style="font-weight:800;margin-bottom:4px">Regularize e acompanhe</h5><p style="font-size:13px;opacity:.8">Cadastre DTE e DJE, atualize dados e use o Checklist para acompanhar.</p></div>
+</div></div>
+
+<div class="card" style="margin-bottom:24px"><h3 style="font-size:18px;font-weight:800;margin-bottom:16px">🎨 Entenda os Sinais</h3>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+<div style="text-align:center;padding:16px;border-radius:12px;background:#F0FDF4"><div style="font-size:32px">🟢</div><div style="font-weight:800;font-size:13px;color:#16A34A">Verde = Conforme</div><div style="font-size:12px;color:#64748B">Obrigação cumprida!</div></div>
+<div style="text-align:center;padding:16px;border-radius:12px;background:#FFFBEB"><div style="font-size:32px">🟡</div><div style="font-weight:800;font-size:13px;color:#EAB308">Amarelo = Atenção</div><div style="font-size:12px;color:#64748B">Prazo se aproximando</div></div>
+<div style="text-align:center;padding:16px;border-radius:12px;background:#FEF2F2"><div style="font-size:32px">🔴</div><div style="font-weight:800;font-size:13px;color:#DC2626">Vermelho = Pendente</div><div style="font-size:12px;color:#64748B">Risco de multa!</div></div>
+</div></div>
+
+<h3 style="font-size:18px;font-weight:800;margin-bottom:16px">Perguntas Frequentes</h3>
+<div class="card faq-item" onclick="this.classList.toggle('open')"><button class="faq-q">O que é o DTE e por que preciso me cadastrar?<span class="faq-toggle">+</span></button><div class="faq-a">Imagine que a Receita Federal quer te enviar uma carta importante. Com o DTE, é como ter uma caixa de correio digital oficial. Se você nao se cadastra, a Receita considera que voce recebeu mesmo assim e os prazos correm! Para se cadastrar, acesse o e-CAC (cav.receita.fazenda.gov.br) com certificado digital ou Gov.br.</div></div>
+<div class="card faq-item" onclick="this.classList.toggle('open')"><button class="faq-q">O que acontece se eu ignorar o DJE?<span class="faq-toggle">+</span></button><div class="faq-a">O DJE e a versao judicial do DTE. Sem cadastro, o juiz publica num edital e considera que voce foi avisado. Voce pode perder um processo sem nem saber! Derrota por W.O. Cadastre-se em domicilio-eletronico.cnj.jus.br usando sua conta Gov.br.</div></div>
+<div class="card faq-item" onclick="this.classList.toggle('open')"><button class="faq-q">Como atualizo os dados do meu CNPJ na Receita?<span class="faq-toggle">+</span></button><div class="faq-a">Acesse o e-CAC (cav.receita.fazenda.gov.br), va em Cadastros, selecione Consulta/Atualizacao Cadastral, altere os dados e transmita o DBE. Para mudancas de endereco, voce tambem precisa registrar na Junta Comercial.</div></div>
+<div class="card faq-item" onclick="this.classList.toggle('open')"><button class="faq-q">Preciso de certificado digital?<span class="faq-toggle">+</span></button><div class="faq-a">Para a maioria das funcoes no e-CAC, voce pode usar a conta Gov.br nivel Prata ou Ouro. O certificado digital (e-CNPJ) e necessario para algumas operacoes especificas como transmissao de obrigacoes acessorias. Recomendamos ter os dois.</div></div>
+<div class="card faq-item" onclick="this.classList.toggle('open')"><button class="faq-q">O que e Gov.br nivel Prata/Ouro?<span class="faq-toggle">+</span></button><div class="faq-a">E o nivel de seguranca da sua conta Gov.br. Bronze: apenas CPF. Prata: validacao por biometria ou banco. Ouro: certificado digital ou biometria facial. Para DTE e DJE voce precisa no minimo Prata. Acesse acesso.gov.br para verificar ou subir seu nivel.</div></div>
+<div class="card faq-item" onclick="this.classList.toggle('open')"><button class="faq-q">Meus dados estao seguros neste site?<span class="faq-toggle">+</span></button><div class="faq-a">Sim! Nao armazenamos nenhum dado. A consulta CNPJ busca dados publicos da Receita Federal em tempo real e nao salva nada no servidor. O site segue a LGPD (Lei 13.709/2018). Veja nossa politica completa na aba LGPD.</div></div>
+
+<div class="card" style="margin-top:24px"><h3 style="font-size:18px;font-weight:800;margin-bottom:16px">📚 Portais Oficiais — Acesso Direto</h3>
+<div class="grid-2">
+<a href="https://cav.receita.fazenda.gov.br/" target="_blank" class="link-card"><div class="link-icon">🏛️</div><div><div class="title">e-CAC — Receita Federal</div><div class="desc">DTE, cadastro CNPJ, e-BEF</div></div></a>
+<a href="https://domicilio-eletronico.cnj.jus.br/" target="_blank" class="link-card"><div class="link-icon">⚖️</div><div><div class="title">DJE — Domicilio Judicial</div><div class="desc">Cadastro obrigatorio CNJ</div></div></a>
+<a href="https://sso.acesso.gov.br/" target="_blank" class="link-card"><div class="link-icon">🔑</div><div><div class="title">Gov.br — Criar/Gerenciar Conta</div><div class="desc">Nivel Prata ou Ouro necessario</div></div></a>
+<a href="https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/cadastros/cnpj" target="_blank" class="link-card"><div class="link-icon">📋</div><div><div class="title">Guia CNPJ — Receita Federal</div><div class="desc">Atualizacao cadastral completa</div></div></a>
+<a href="https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/esocial" target="_blank" class="link-card"><div class="link-icon">👷</div><div><div class="title">eSocial</div><div class="desc">Obrigacoes trabalhistas</div></div></a>
+<a href="https://www.dcgrhsemriscos.business/" target="_blank" class="link-card"><div class="link-icon">🛡️</div><div><div class="title">DCG RH Sem Riscos</div><div class="desc">Diagnostico NR-1 gratuito</div></div></a>
+</div></div>
+</div></section></div>
+
+<div id="page-lgpd" class="page">
+<section><div class="container" style="max-width:800px;margin:0 auto">
+<h1 style="font-size:28px;font-weight:900;margin-bottom:4px">🔒 Politica de Privacidade</h1>
+<p style="color:#64748B;font-size:14px;margin-bottom:24px">Lei Geral de Protecao de Dados (Lei 13.709/2018)</p>
+<div class="card" style="line-height:1.9;font-size:14px">
+<h3 style="font-weight:800;font-size:18px;margin-bottom:12px">1. Controlador</h3><p><strong>DCG Corretora de Seguros LTDA</strong> — CNPJ 16.383.565/0001-35 — SUSEP 10.2010993.8<br>Av. Dr. Gastao Vidigal, 1132 — Torre A, Conj. 314, Vila Leopoldina, SP — CEP 05314-000<br>DPO: diniz@dcgseguros.com.br | (11) 93075-9163</p>
+<h3 style="font-weight:800;font-size:18px;margin:24px 0 12px">2. Dados Coletados</h3><p>Este site <strong>nao armazena dados pessoais</strong>. A consulta CNPJ busca dados publicos da Receita Federal em tempo real e nao salva nenhuma informacao no servidor.</p>
+<h3 style="font-weight:800;font-size:18px;margin:24px 0 12px">3. Cookies</h3><p>Apenas cookies essenciais de sessao. Sem rastreamento ou publicidade.</p>
+<h3 style="font-weight:800;font-size:18px;margin:24px 0 12px">4. Seus Direitos (Art. 18 LGPD)</h3><p>Confirmacao de tratamento, acesso, correcao, eliminacao, portabilidade. Entre em contato: diniz@dcgseguros.com.br</p>
+<h3 style="font-weight:800;font-size:18px;margin:24px 0 12px">5. Seguranca</h3><p>SSL/TLS, headers de seguranca, sem armazenamento de dados sensiveis.</p>
+<p style="margin-top:24px;font-size:12px;color:#64748B">Ultima atualizacao: 15 de abril de 2026.</p>
+</div></div></section></div>
+
+<footer><div class="footer-grid">
+<div><div class="footer-logo"><div class="box">DCG</div><div><div style="font-weight:800;font-size:15px">Conformidade DCG</div><div style="font-size:11px;opacity:.6">Monitoramento Regulatorio</div></div></div><p>Plataforma de verificacao de conformidade regulatoria. Consultas reais na Receita Federal. DTE, DJE e e-BEF.</p></div>
+<div><h4>DCG Corretora de Seguros</h4><p>DCG Corretora de Seguros LTDA<br>CNPJ: 16.383.565/0001-35<br>SUSEP: 10.2010993.8<br>CEO: Diniz Barbosa<br>(11) 93075-9163<br>comercial@dcgseguros.com.br<br><a href="https://www.dcgseguros.com.br" target="_blank">www.dcgseguros.com.br</a></p></div>
+<div><h4>Portais Oficiais</h4><a href="https://cav.receita.fazenda.gov.br/" target="_blank">e-CAC — Receita Federal ↗</a><br><a href="https://domicilio-eletronico.cnj.jus.br/" target="_blank">DJE — CNJ ↗</a><br><a href="https://sso.acesso.gov.br/" target="_blank">Gov.br ↗</a><br><a href="http://sped.rfb.gov.br/" target="_blank">SPED ↗</a><br><a href="https://www.gov.br/anpd/pt-br" target="_blank">ANPD (LGPD) ↗</a><br><a href="https://www.dcgrhsemriscos.business/" target="_blank">DCG RH Sem Riscos ↗</a></div>
+</div><div class="footer-bottom"><span>© 2026 DCG Corretora de Seguros LTDA. Todos os direitos reservados.</span><span>Mais de 25 anos em seguros corporativos e saude empresarial.</span></div></footer>
+
+<script>
+const OBRIG=[
+{id:'dte',nome:'DTE',full:'Domicilio Tributario Eletronico',cat:'Fiscal',prazo:'Permanente',link:'https://cav.receita.fazenda.gov.br/'},
+{id:'dje',nome:'DJE',full:'Domicilio Judicial Eletronico',cat:'Judicial',prazo:'31/03/2026',link:'https://domicilio-eletronico.cnj.jus.br/'},
+{id:'ebef',nome:'e-BEF',full:'Beneficiario Final',cat:'Fiscal',prazo:'Progressivo ate 2028',link:'https://cav.receita.fazenda.gov.br/'},
+{id:'ecf',nome:'ECF',full:'Escrituracao Contabil Fiscal',cat:'Contabil',prazo:'Anual — julho',link:'https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/declaracoes-e-demonstrativos/ecf'},
+{id:'ecd',nome:'ECD',full:'Escrituracao Contabil Digital',cat:'Contabil',prazo:'Anual — maio',link:'http://sped.rfb.gov.br/'},
+{id:'dctf',nome:'DCTF',full:'Debitos e Creditos Tributarios',cat:'Fiscal',prazo:'Mensal',link:'https://www.gov.br/receitafederal/pt-br'},
+{id:'defis',nome:'DEFIS',full:'Simples Nacional',cat:'Fiscal',prazo:'Anual — marco',link:'https://www8.receita.fazenda.gov.br/SimplesNacional/'},
+{id:'esocial',nome:'eSocial',full:'Obrigacoes Trabalhistas',cat:'Trabalhista',prazo:'Continuo',link:'https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/esocial'},
+{id:'pgr',nome:'PGR/NR-1',full:'Gerenciamento de Riscos',cat:'Trabalhista',prazo:'Permanente',link:'https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/seguranca-e-saude-no-trabalho/normas-regulamentadoras'},
+{id:'pcmso',nome:'PCMSO',full:'Controle Medico',cat:'Trabalhista',prazo:'Permanente',link:'https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/seguranca-e-saude-no-trabalho/normas-regulamentadoras'},
+{id:'lgpd',nome:'LGPD',full:'Protecao de Dados',cat:'Dados',prazo:'Permanente',link:'https://www.gov.br/anpd/pt-br'}
+];
+let checklist={};OBRIG.forEach(o=>checklist[o.id]='danger');
+const sMap={ok:{bg:'#DCFCE7',c:'#16A34A',t:'Conforme',e:'✅'},warn:{bg:'#FEF9C3',c:'#EAB308',t:'Em andamento',e:'🔄'},danger:{bg:'#FEE2E2',c:'#DC2626',t:'Pendente',e:'❌'}};
+const cycle=['danger','warn','ok'];
+
+function showPage(id){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById('page-'+id).classList.add('active');
+document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+document.querySelectorAll('.nav-links a').forEach(a=>{if(a.getAttribute('onclick')&&a.getAttribute('onclick').includes("'"+id+"'"))a.classList.add('active')});
+window.scrollTo(0,0);if(id==='checklist')renderChecklist();
+}
+function getScore(){let t=0;Object.values(checklist).forEach(s=>{if(s==='ok')t+=100;else if(s==='warn')t+=50});return Math.round(t/OBRIG.length)}
+function toggleStatus(id){let cur=cycle.indexOf(checklist[id]);checklist[id]=cycle[(cur+1)%3];renderChecklist()}
+function renderChecklist(){
+let score=getScore();let col=score>=80?'#16A34A':score>=50?'#EAB308':'#DC2626';
+let cs=document.getElementById('checklist-score');if(cs){cs.querySelector('.value').textContent=score;cs.querySelector('.value').style.color=col}
+let cl=document.getElementById('checklist-items');if(!cl)return;cl.innerHTML='';
+OBRIG.forEach(o=>{let s=sMap[checklist[o.id]];
+cl.innerHTML+=`<div class="card check-item" style="border-left-color:${s.c}" onclick="toggleStatus('${o.id}')"><div class="check-icon" style="background:${s.bg}">${s.e}</div><div style="flex:1"><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px"><span style="font-weight:800;font-size:15px">${o.nome}</span><span style="font-size:11px;padding:2px 8px;border-radius:99px;background:#3B82F615;color:#3B82F6;font-weight:700">${o.cat}</span></div><div style="font-size:13px;color:#64748B">${o.full} · Prazo: ${o.prazo}</div></div><span class="badge badge-${checklist[o.id]}">${s.t}</span><a href="${o.link}" target="_blank" onclick="event.stopPropagation()" style="padding:8px;border-radius:8px;background:#E8F1FA;display:flex;text-decoration:none;font-size:12px;color:#1565A8" title="Portal oficial">↗</a></div>`})
+}
+function formatCNPJ(v){return v.replace(/\D/g,'').replace(/^(\d{2})(\d)/,'$1.$2').replace(/^(\d{2})\.(\d{3})(\d)/,'$1.$2.$3').replace(/\.(\d{3})(\d)/,'.$1/$2').replace(/(\d{4})(\d)/,'$1-$2').slice(0,18)}
+document.addEventListener('DOMContentLoaded',function(){
+document.querySelectorAll('.cnpj-input').forEach(function(inp){inp.addEventListener('input',function(){this.value=formatCNPJ(this.value)})});
+renderChecklist();
+});
+function consultarCNPJ(){
+var inp=document.getElementById('cnpj-input');var clean=inp.value.replace(/\D/g,'');
+var errEl=document.getElementById('cnpj-error');var resEl=document.getElementById('cnpj-result');
+var actEl=document.getElementById('cnpj-actions');var btn=document.getElementById('cnpj-btn');
+errEl.style.display='none';resEl.style.display='none';actEl.style.display='none';
+if(clean.length!==14){errEl.textContent='CNPJ deve ter 14 digitos';errEl.style.display='block';return}
+btn.textContent='Consultando na Receita...';btn.disabled=true;
+fetch('/api/cnpj/'+clean).then(r=>r.json()).then(d=>{
+btn.textContent='🔍 Consultar na Receita';btn.disabled=false;
+if(d.status==='ERROR'){errEl.textContent=d.message||'CNPJ nao encontrado';errEl.style.display='block';return}
+var sit=d.situacao==='ATIVA';
+var h='<div class="header"><div class="icon">🏢</div><div style="flex:1"><div style="font-weight:900;font-size:18px">'+d.nome+'</div><div style="font-size:13px;color:#64748B">CNPJ: '+d.cnpj+'</div></div><span class="badge '+(sit?'badge-ok':'badge-danger')+'">'+d.situacao+'</span></div>';
+if(!sit)h+='<div class="alert-box alert-danger">⚠️ <strong>CNPJ nao esta ATIVO!</strong> Situacao: '+d.situacao+'. Procure um contador para regularizar.</div>';
+h+='<div class="fields">';
+var fields=[['Razao Social',d.nome],['Nome Fantasia',d.fantasia||'(nao informado)'],['Abertura',d.abertura],['Tipo',d.tipo],['Porte',d.porte],['Natureza Juridica',d.natureza_juridica],['Atividade Principal',d.atividade_principal&&d.atividade_principal[0]?d.atividade_principal[0].text:'—'],['Endereco',d.logradouro+', '+d.numero+' '+(d.complemento||'')],['Bairro',d.bairro],['Cidade/UF',d.municipio+'/'+d.uf],['CEP',d.cep],['Telefone',d.telefone||'⚠️ NAO INFORMADO — Atualize!'],['E-mail',d.email||'⚠️ NAO INFORMADO — Atualize!'],['Capital Social',d.capital_social?'R$ '+Number(d.capital_social).toLocaleString('pt-BR'):'—'],['Simples Nacional',d.simples&&d.simples.optante?'Optante':'Nao optante']];
+fields.forEach(function(f){
+var warn=f[1]&&(f[1].includes('NAO INFORMADO')||f[1]==='(nao informado)');
+h+='<div class="field"><label>'+f[0]+'</label><p'+(warn?' style="color:#DC2626;font-weight:700"':'')+'>'+f[1]+'</p></div>'});
+h+='</div>';
+if(d.qsa&&d.qsa.length>0){h+='<div style="margin-top:24px;padding-top:20px;border-top:1px solid #E2E8F0"><h4 style="font-weight:800;font-size:15px;margin-bottom:12px">👥 Quadro Societario ('+d.qsa.length+' socios)</h4>';
+d.qsa.forEach(function(s){h+='<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #E2E8F0;font-size:14px"><span style="font-weight:600">'+s.nome+'</span><span style="color:#64748B;font-size:12px">'+s.qual+'</span></div>'});h+='</div>'}
+resEl.innerHTML=h;resEl.style.display='block';actEl.style.display='block';
+}).catch(function(){btn.textContent='🔍 Consultar na Receita';btn.disabled=false;errEl.textContent='Erro ao consultar. Verifique o CNPJ e tente novamente.';errEl.style.display='block'});
+}
+</script>
+</body></html>

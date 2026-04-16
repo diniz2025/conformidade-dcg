@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Admin - Conformidade DCG</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:#0F172A;color:#E2E8F0;min-height:100vh}
+.header{background:#1E293B;padding:16px 24px;border-bottom:1px solid #334155;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.header h1{font-size:18px;font-weight:900}
+.admin-tag{background:#DC2626;padding:4px 12px;border-radius:99px;font-size:11px;font-weight:800;letter-spacing:1px;margin-left:8px}
+.container{max-width:1400px;margin:0 auto;padding:24px}
+.tabs{display:flex;gap:4px;margin-bottom:24px;flex-wrap:wrap}
+.tab{padding:10px 18px;background:#1E293B;border:1px solid #334155;color:#94A3B8;border-radius:10px;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600}
+.tab.active{background:#1565A8;color:#fff;border-color:#1565A8}
+.page{display:none}.page.active{display:block}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}
+.kpi{background:#1E293B;border:1px solid #334155;border-radius:12px;padding:20px}
+.kpi .label{font-size:11px;color:#94A3B8;text-transform:uppercase;margin-bottom:8px}
+.kpi .value{font-size:28px;font-weight:900}
+.kpi.green .value{color:#4ADE80}.kpi.blue .value{color:#60A5FA}.kpi.yellow .value{color:#FACC15}
+.table{background:#1E293B;border-radius:12px;overflow:auto;border:1px solid #334155}
+.table table{width:100%;border-collapse:collapse;min-width:600px}
+.table th{padding:14px;text-align:left;font-size:11px;color:#94A3B8;text-transform:uppercase;background:#0F172A;border-bottom:1px solid #334155}
+.table td{padding:12px 14px;font-size:13px;border-bottom:1px solid #334155}
+.table tr:hover{background:#0F172A}
+.badge{display:inline-block;padding:3px 8px;border-radius:99px;font-size:10px;font-weight:700}
+.b-free{background:#334155;color:#94A3B8}
+.b-starter{background:#1E3A5F;color:#60A5FA}
+.b-pro{background:#713F12;color:#FCD34D}
+.b-agency{background:#581C87;color:#C084FC}
+.b-approved,.b-ok{background:#064E3B;color:#4ADE80}
+.b-pending{background:#78350F;color:#FCD34D}
+.b-rejected,.b-danger{background:#7F1D1D;color:#F87171}
+.auth-check{max-width:400px;margin:100px auto;background:#1E293B;padding:40px;border-radius:16px;text-align:center}
+.auth-check input{width:100%;padding:12px;background:#0F172A;border:1px solid #334155;border-radius:8px;color:#fff;font-size:14px;margin-bottom:12px;font-family:inherit}
+.auth-check button{width:100%;padding:12px;background:#1565A8;border:none;color:#fff;border-radius:8px;font-weight:700;cursor:pointer;font-family:inherit}
+.loading{text-align:center;padding:40px;color:#94A3B8}
+</style>
+</head>
+<body>
+
+<div id="auth-gate" class="auth-check">
+<h2 style="font-weight:900;margin-bottom:16px">Admin DCG</h2>
+<p style="color:#94A3B8;font-size:13px;margin-bottom:24px">Faca login com sua conta admin</p>
+<input type="email" id="admin-email" placeholder="E-mail admin" value="diniz@dcgseguros.com.br">
+<input type="password" id="admin-senha" placeholder="Senha" onkeydown="if(event.key==='Enter')doAdminLogin()">
+<button onclick="doAdminLogin()">Entrar</button>
+<div id="admin-err" style="color:#F87171;margin-top:12px;font-size:13px"></div>
+<p style="margin-top:20px;font-size:12px"><a href="/app.html" style="color:#60A5FA">Area do cliente</a> - <a href="/" style="color:#60A5FA">Site</a></p>
+</div>
+
+<div id="admin-app" style="display:none">
+<div class="header">
+<h1>Admin Conformidade DCG<span class="admin-tag">ADMIN</span></h1>
+<div><a href="/app.html" style="color:#94A3B8;margin-right:16px;font-size:13px">Voltar ao App</a><button onclick="localStorage.removeItem('dcg_token');location.reload()" style="background:transparent;border:1px solid #334155;color:#94A3B8;padding:6px 12px;border-radius:6px;cursor:pointer;font-family:inherit;font-size:12px">Sair</button></div>
+</div>
+<div class="container">
+<div class="tabs">
+<button class="tab active" onclick="goTab('resumo')">Resumo</button>
+<button class="tab" onclick="goTab('usuarios')">Usuarios</button>
+<button class="tab" onclick="goTab('cnpjs')">CNPJs</button>
+<button class="tab" onclick="goTab('pagamentos')">Pagamentos</button>
+<button class="tab" onclick="goTab('alertas')">Alertas</button>
+</div>
+<div id="page-resumo" class="page active">
+<div class="kpis" id="kpis-container"></div>
+<div class="table" id="planos-table"></div>
+</div>
+<div id="page-usuarios" class="page"><div class="table" id="usuarios-table"><div class="loading">Carregando...</div></div></div>
+<div id="page-cnpjs" class="page"><div class="table" id="cnpjs-table"><div class="loading">Carregando...</div></div></div>
+<div id="page-pagamentos" class="page"><div class="table" id="pagamentos-table"><div class="loading">Carregando...</div></div></div>
+<div id="page-alertas" class="page"><div class="table" id="alertas-table"><div class="loading">Carregando...</div></div></div>
+</div>
+</div>
+<script>
+let TOKEN = localStorage.getItem('dcg_token');
+
+async function doAdminLogin() {
+  const email = document.getElementById('admin-email').value;
+  const senha = document.getElementById('admin-senha').value;
+  const err = document.getElementById('admin-err');
+  err.textContent = '';
+  try {
+    const r = await fetch('/api/auth/login', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({email,senha})});
+    const d = await r.json();
+    if (!r.ok) { err.textContent = d.erro; return; }
+    if (email !== 'diniz@dcgseguros.com.br') { err.textContent = 'Acesso restrito'; return; }
+    TOKEN = d.token;
+    localStorage.setItem('dcg_token', TOKEN);
+    enterAdmin();
+  } catch(e) { err.textContent = 'Erro de conexao'; }
+}
+
+function enterAdmin() {
+  document.getElementById('auth-gate').style.display = 'none';
+  document.getElementById('admin-app').style.display = 'block';
+  loadResumo();
+}
+
+async function api(path) {
+  const r = await fetch('/api/admin' + path, { headers: {'Authorization': 'Bearer '+TOKEN}});
+  if (r.status === 401 || r.status === 403) { localStorage.removeItem('dcg_token'); location.reload(); return null; }
+  return r.json();
+}
+
+function goTab(tab) {
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('page-'+tab).classList.add('active');
+  if (tab==='resumo') loadResumo();
+  if (tab==='usuarios') loadUsuarios();
+  if (tab==='cnpjs') loadCNPJs();
+  if (tab==='pagamentos') loadPagamentos();
+  if (tab==='alertas') loadAlertas();
+}
+
+async function loadResumo() {
+  const d = await api('/resumo'); if(!d) return;
+  document.getElementById('kpis-container').innerHTML =
+    '<div class="kpi blue"><div class="label">Total Usuarios</div><div class="value">'+d.usuarios+'</div></div>' +
+    '<div class="kpi green"><div class="label">Pagantes</div><div class="value">'+d.pagantes+'</div></div>' +
+    '<div class="kpi"><div class="label">CNPJs</div><div class="value">'+d.cnpjs+'</div></div>' +
+    '<div class="kpi yellow"><div class="label">Alertas 30d</div><div class="value">'+d.alertas_30d+'</div></div>' +
+    '<div class="kpi green"><div class="label">Receita 30d</div><div class="value">R$ '+d.receita_30d.toFixed(2).replace('.',',')+'</div></div>';
+  let ph = '<table><thead><tr><th>Plano</th><th>Usuarios</th></tr></thead><tbody>';
+  d.por_plano.forEach(p=>{ ph+='<tr><td><span class="badge b-'+p.plano+'">'+p.plano.toUpperCase()+'</span></td><td>'+p.qtd+'</td></tr>'; });
+  ph+='</tbody></table>';
+  document.getElementById('planos-table').innerHTML = ph;
+}
+
+async function loadUsuarios() {
+  const d = await api('/usuarios'); if(!d) return;
+  let h = '<table><thead><tr><th>ID</th><th>Nome</th><th>Email</th><th>Telefone</th><th>Plano</th><th>CNPJs</th><th>Verif</th><th>Criado</th></tr></thead><tbody>';
+  d.usuarios.forEach(u=>{
+    h+='<tr><td>'+u.id+'</td><td>'+u.nome+'</td><td>'+u.email+'</td><td>'+(u.telefone||'-')+'</td><td><span class="badge b-'+u.plano+'">'+u.plano.toUpperCase()+'</span></td><td>'+u.total_cnpjs+'</td><td>'+(u.email_verificado?'Sim':'Nao')+'</td><td>'+new Date(u.criado_em).toLocaleDateString('pt-BR')+'</td></tr>';
+  });
+  h+='</tbody></table>';
+  document.getElementById('usuarios-table').innerHTML = h;
+}
+
+async function loadCNPJs() {
+  const d = await api('/cnpjs'); if(!d) return;
+  let h = '<table><thead><tr><th>CNPJ</th><th>Razao Social</th><th>Situacao</th><th>Score</th><th>Cliente</th><th>Plano</th></tr></thead><tbody>';
+  d.cnpjs.forEach(c=>{
+    const sit = c.situacao==='ATIVA'?'b-ok':'b-danger';
+    h+='<tr><td style="font-family:monospace">'+c.cnpj+'</td><td>'+(c.razao_social||'-')+'</td><td><span class="badge '+sit+'">'+(c.situacao||'-')+'</span></td><td>'+c.score+'</td><td>'+c.usuario_nome+'<br><span style="color:#94A3B8;font-size:11px">'+c.usuario_email+'</span></td><td><span class="badge b-'+c.plano+'">'+c.plano.toUpperCase()+'</span></td></tr>';
+  });
+  h+='</tbody></table>';
+  if (!d.cnpjs.length) h = '<div class="loading">Nenhum CNPJ cadastrado.</div>';
+  document.getElementById('cnpjs-table').innerHTML = h;
+}
+
+async function loadPagamentos() {
+  const d = await api('/pagamentos'); if(!d) return;
+  let h = '<table><thead><tr><th>Data</th><th>Cliente</th><th>Plano</th><th>Valor</th><th>Status</th><th>Metodo</th></tr></thead><tbody>';
+  d.pagamentos.forEach(p=>{
+    h+='<tr><td>'+new Date(p.criado_em).toLocaleString('pt-BR')+'</td><td>'+p.usuario_nome+'<br><span style="color:#94A3B8;font-size:11px">'+p.usuario_email+'</span></td><td>'+(p.plano||'-')+'</td><td>R$ '+(p.valor?parseFloat(p.valor).toFixed(2).replace('.',','):'-')+'</td><td><span class="badge b-'+p.status+'">'+p.status+'</span></td><td>'+(p.metodo||'-')+'</td></tr>';
+  });
+  h+='</tbody></table>';
+  if (!d.pagamentos.length) h = '<div class="loading">Nenhum pagamento ainda.</div>';
+  document.getElementById('pagamentos-table').innerHTML = h;
+}
+
+async function loadAlertas() {
+  const d = await api('/alertas'); if(!d) return;
+  let h = '<table><thead><tr><th>Data</th><th>Cliente</th><th>CNPJ</th><th>Obrigacao</th><th>Titulo</th><th>Canal</th></tr></thead><tbody>';
+  d.alertas.forEach(a=>{
+    h+='<tr><td>'+new Date(a.criado_em).toLocaleString('pt-BR')+'</td><td>'+a.usuario_email+'</td><td style="font-family:monospace;font-size:11px">'+a.cnpj+'</td><td><span class="badge b-danger">'+a.obrigacao.toUpperCase()+'</span></td><td style="font-size:12px">'+a.titulo+'</td><td>'+a.canal+'</td></tr>';
+  });
+  h+='</tbody></table>';
+  if (!d.alertas.length) h = '<div class="loading">Nenhum alerta ainda.</div>';
+  document.getElementById('alertas-table').innerHTML = h;
+}
+
+if (TOKEN) enterAdmin();
+</script>
+</body>
+</html>

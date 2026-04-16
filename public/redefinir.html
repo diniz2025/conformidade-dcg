@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Redefinir Senha - Conformidade DCG</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:linear-gradient(135deg,#1565A8,#0D4A7A);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.box{background:#fff;border-radius:20px;padding:40px;max-width:440px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.logo{width:60px;height:60px;border-radius:14px;background:#1565A8;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:20px;margin:0 auto 16px}
+h2{text-align:center;font-weight:900;margin-bottom:8px;color:#1E293B}
+p.sub{text-align:center;font-size:13px;color:#64748B;margin-bottom:24px}
+.input{width:100%;padding:12px 14px;border-radius:10px;border:2px solid #E2E8F0;font-size:14px;font-family:inherit;margin-bottom:12px;outline:none}
+.input:focus{border-color:#1565A8}
+label{font-size:13px;font-weight:600;display:block;margin-bottom:6px;color:#334155}
+.btn{width:100%;padding:14px;background:#1565A8;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit}
+.btn:hover{background:#0D4A7A}
+.err{background:#FEE2E2;color:#DC2626;padding:10px;border-radius:8px;font-size:13px;margin-bottom:12px;display:none}
+.ok{background:#DCFCE7;color:#16A34A;padding:10px;border-radius:8px;font-size:13px;margin-bottom:12px;display:none}
+</style>
+</head>
+<body>
+<div class="box">
+<div class="logo">DCG</div>
+<h2>Redefinir Senha</h2>
+<p class="sub">Digite sua nova senha</p>
+<div id="err" class="err"></div>
+<div id="ok" class="ok"></div>
+<div id="form">
+<label>Nova senha (minimo 6 caracteres)</label>
+<input type="password" id="senha" class="input" minlength="6">
+<label>Confirme a nova senha</label>
+<input type="password" id="senha2" class="input" minlength="6">
+<button class="btn" onclick="redefinir()">Redefinir Senha</button>
+</div>
+<p style="text-align:center;margin-top:16px;font-size:13px"><a href="/app.html" style="color:#1565A8">Voltar ao login</a></p>
+</div>
+<script>
+const params = new URLSearchParams(location.search);
+const token = params.get('t');
+if (!token) { document.getElementById('err').textContent = 'Link invalido'; document.getElementById('err').style.display='block'; document.getElementById('form').style.display='none'; }
+async function redefinir() {
+  const senha = document.getElementById('senha').value;
+  const senha2 = document.getElementById('senha2').value;
+  const err = document.getElementById('err'); const ok = document.getElementById('ok');
+  err.style.display = 'none'; ok.style.display = 'none';
+  if (senha.length < 6) { err.textContent = 'Senha deve ter 6+ caracteres'; err.style.display='block'; return; }
+  if (senha !== senha2) { err.textContent = 'As senhas nao coincidem'; err.style.display='block'; return; }
+  const r = await fetch('/api/auth/redefinir-senha', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({token, senha})});
+  const d = await r.json();
+  if (!r.ok) { err.textContent = d.erro; err.style.display='block'; return; }
+  ok.textContent = 'Senha redefinida! Redirecionando...';
+  ok.style.display = 'block';
+  document.getElementById('form').style.display = 'none';
+  setTimeout(function(){location.href='/app.html'}, 2000);
+}
+</script>
+</body>
+</html>

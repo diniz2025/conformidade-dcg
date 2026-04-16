@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DJE — Domicílio Judicial Eletrônico | Conformidade DCG</title>
+<meta name="description" content="Cadastro obrigatório no CNJ. Sem DJE, sua empresa pode ter processos correndo à revelia sem saber. Regularize agora com orientação gratuita da DCG.">
+<meta property="og:title" content="⚠️ DJE — Sua empresa pode ter processos correndo à revelia">
+<meta property="og:description" content="Sem cadastro no DJE, citações podem ser feitas por edital. Processo corre. Prazo vence. Você só descobre quando o dinheiro sair da conta.">
+<meta property="og:image" content="https://media.base44.com/images/public/69ccbad29ac7348ad4530659/de8b9862a_generated_image.png">
+<meta property="og:url" content="https://conformidade.dcgseguros.com.br/dje">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231565A8'/><text x='50' y='68' font-size='45' font-weight='900' fill='white' text-anchor='middle'>DCG</text></svg>">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',system-ui,sans-serif;color:#1E293B;background:#F0F4F8;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+nav{position:sticky;top:0;z-index:100;background:rgba(13,74,122,.97);backdrop-filter:blur(12px);padding:0 24px}
+nav .inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-box{width:36px;height:36px;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;color:#1565A8;font-weight:900;font-size:13px}
+.logo span{font-weight:800;font-size:17px;color:#fff}
+.nav-back{color:rgba(255,255,255,.75);font-size:13px;font-weight:500;display:flex;align-items:center;gap:6px;transition:.2s}
+.nav-back:hover{color:#fff}
+.hero{background:linear-gradient(135deg,#0f2744 0%,#1a3a6e 60%,#0D4A7A 100%);padding:72px 24px 80px;color:#fff;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-120px;right:-120px;width:500px;height:500px;border-radius:50%;background:rgba(245,158,11,.06)}
+.hero::after{content:'';position:absolute;bottom:-80px;left:-80px;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.03)}
+.hero .wrap{max-width:1100px;margin:0 auto;position:relative;z-index:1}
+.urgency-bar{display:inline-flex;align-items:center;gap:10px;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.4);border-radius:99px;padding:8px 20px;margin-bottom:32px;font-size:13px;font-weight:700;color:#FCA5A5;letter-spacing:.5px}
+.urgency-bar .dot{width:8px;height:8px;border-radius:50%;background:#EF4444;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.3)}}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.35);border-radius:12px;padding:8px 18px;margin-bottom:20px;font-size:13px;font-weight:700;color:#FCD34D}
+.hero h1{font-size:clamp(32px,6vw,58px);font-weight:900;line-height:1.05;margin-bottom:12px;letter-spacing:-1px}
+.hero h1 .dje{color:#F59E0B}
+.hero h1 .sub{display:block;font-size:clamp(18px,3vw,28px);font-weight:700;color:rgba(255,255,255,.75);margin-top:8px;letter-spacing:0}
+.hero-desc{font-size:clamp(15px,2vw,19px);opacity:.85;max-width:650px;line-height:1.7;margin:24px 0 36px}
+.hero-desc strong{color:#FCD34D}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:12px;font-size:15px;font-weight:700;border:none;cursor:pointer;transition:all .25s;font-family:inherit;text-decoration:none;letter-spacing:.2px}
+.btn-amber{background:#F59E0B;color:#1a1a1a}.btn-amber:hover{background:#D97706;transform:translateY(-1px);box-shadow:0 8px 24px rgba(245,158,11,.35)}
+.btn-outline{background:transparent;border:2px solid rgba(255,255,255,.35);color:#fff}.btn-outline:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.6)}
+.deadline-section{background:#fff;padding:48px 24px;border-bottom:1px solid #E2E8F0}
+.deadline-section .wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
+.dl-card{border-radius:16px;padding:28px;border:2px solid;text-align:center}
+.dl-card.red{border-color:#FCA5A5;background:#FFF5F5}
+.dl-card.amber{border-color:#FDE68A;background:#FFFBEB}
+.dl-card.blue{border-color:#BFDBFE;background:#EFF6FF}
+.dl-card .icon{font-size:32px;margin-bottom:12px}
+.dl-card h3{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;opacity:.6}
+.dl-card .value{font-size:clamp(16px,3vw,24px);font-weight:900;line-height:1.2}
+.dl-card.red .value{color:#DC2626}
+.dl-card.amber .value{color:#D97706}
+.dl-card.blue .value{color:#1565A8}
+.dl-card p{font-size:13px;color:#64748B;margin-top:8px;line-height:1.5}
+.content{max-width:1100px;margin:0 auto;padding:60px 24px}
+.what-card{background:#fff;border-radius:20px;padding:40px;border:1px solid #E2E8F0;box-shadow:0 2px 12px rgba(0,0,0,.04);margin-bottom:32px}
+.what-card h2{font-size:clamp(20px,3vw,28px);font-weight:900;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.what-card p{font-size:16px;color:#475569;line-height:1.8;margin-bottom:16px}
+.what-card p:last-child{margin-bottom:0}
+.highlight-box{background:#FFFBEB;border-left:4px solid #F59E0B;border-radius:0 12px 12px 0;padding:20px 24px;margin:20px 0}
+.highlight-box p{font-size:15px;font-weight:600;color:#92400E;line-height:1.6;margin:0}
+.danger-box{background:#FFF5F5;border-left:4px solid #EF4444;border-radius:0 12px 12px 0;padding:20px 24px;margin:20px 0}
+.danger-box p{font-size:15px;font-weight:600;color:#991B1B;line-height:1.6;margin:0}
+.quem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:24px 0}
+.quem-card{background:#EFF6FF;border-radius:14px;padding:20px;border:1px solid #BFDBFE;display:flex;align-items:flex-start;gap:14px}
+.quem-icon{font-size:24px;flex-shrink:0;margin-top:2px}
+.quem-card h4{font-size:14px;font-weight:800;color:#1E3A5F;margin-bottom:4px}
+.quem-card p{font-size:13px;color:#3B5E8C;line-height:1.5}
+.steps-card{background:#fff;border-radius:20px;padding:40px;border:1px solid #E2E8F0;box-shadow:0 2px 12px rgba(0,0,0,.04);margin-bottom:32px}
+.steps-card h2{font-size:clamp(20px,3vw,28px);font-weight:900;margin-bottom:28px;display:flex;align-items:center;gap:12px}
+.step-item{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid #F1F5F9;align-items:flex-start}
+.step-item:last-child{border-bottom:none;padding-bottom:0}
+.step-num{width:40px;height:40px;border-radius:12px;background:#1565A8;color:#fff;font-weight:900;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-body h4{font-size:16px;font-weight:800;margin-bottom:6px;color:#1E293B}
+.step-body p{font-size:14px;color:#64748B;line-height:1.6}
+.step-body a{color:#1565A8;font-weight:700;font-size:13px;display:inline-flex;align-items:center;gap:4px;margin-top:8px;text-decoration:none}
+.step-body a:hover{text-decoration:underline}
+.penal-card{background:linear-gradient(135deg,#1a0a0a,#2d0f0f);border-radius:20px;padding:40px;margin-bottom:32px;color:#fff}
+.penal-card h2{font-size:clamp(20px,3vw,28px);font-weight:900;margin-bottom:8px;display:flex;align-items:center;gap:12px}
+.penal-card .penal-subtitle{font-size:14px;color:rgba(255,255,255,.55);margin-bottom:28px}
+.penal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.penal-item{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);border-radius:14px;padding:20px;text-align:center}
+.penal-item .num{font-size:clamp(16px,2.5vw,24px);font-weight:900;color:#FCA5A5;margin-bottom:8px;line-height:1.3}
+.penal-item p{font-size:13px;color:rgba(255,255,255,.65);line-height:1.5}
+.legal-card{background:#F8FAFC;border-radius:20px;padding:40px;border:1px solid #E2E8F0;margin-bottom:32px}
+.legal-card h2{font-size:clamp(18px,2.5vw,24px);font-weight:900;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.legal-item{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid #E2E8F0;align-items:flex-start}
+.legal-item:last-child{border-bottom:none}
+.legal-tag{background:#1565A8;color:#fff;font-size:11px;font-weight:800;padding:4px 12px;border-radius:99px;white-space:nowrap;flex-shrink:0;margin-top:2px;letter-spacing:.5px}
+.legal-item h4{font-size:14px;font-weight:700;margin-bottom:4px;color:#1E293B}
+.legal-item p{font-size:13px;color:#64748B;line-height:1.5}
+.outras-section{margin-bottom:32px}
+.outras-section h2{font-size:clamp(20px,3vw,28px);font-weight:900;margin-bottom:20px;text-align:center}
+.outras-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.outra-card{background:#fff;border-radius:16px;padding:28px;border:2px solid #E2E8F0;transition:.25s;cursor:pointer;display:block}
+.outra-card:hover{border-color:#1565A8;box-shadow:0 4px 20px rgba(21,101,168,.12);transform:translateY(-2px)}
+.outra-card .badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;padding:4px 12px;border-radius:99px;margin-bottom:14px;letter-spacing:.5px}
+.badge-red{background:#FEE2E2;color:#DC2626}
+.badge-blue{background:#DBEAFE;color:#1D4ED8}
+.outra-card h3{font-size:18px;font-weight:900;margin-bottom:8px;color:#1E293B}
+.outra-card p{font-size:13px;color:#64748B;line-height:1.6}
+.outra-card .prazo{font-size:12px;font-weight:700;margin-top:12px}
+.cta-section{background:linear-gradient(135deg,#1565A8,#0D4A7A);border-radius:24px;padding:56px 40px;text-align:center;color:#fff;margin-bottom:32px}
+.cta-section h2{font-size:clamp(24px,4vw,38px);font-weight:900;margin-bottom:16px}
+.cta-section p{font-size:17px;opacity:.85;max-width:540px;margin:0 auto 32px;line-height:1.7}
+.cta-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.cta-contacts{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin-top:28px;opacity:.75;font-size:14px}
+footer{background:#0f2744;color:rgba(255,255,255,.65);padding:40px 24px;text-align:center}
+footer .wrap{max-width:1100px;margin:0 auto}
+footer .links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+footer .links a{color:rgba(255,255,255,.55);font-size:13px;transition:.2s}
+footer .links a:hover{color:#fff}
+footer .brand{font-size:13px;margin-bottom:8px}
+footer .copy{font-size:12px;opacity:.5}
+footer .filosofia{margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:rgba(255,255,255,.5)}
+footer .filosofia a{color:#F59E0B}
+@media(max-width:640px){.hero{padding:48px 16px 56px}.content{padding:40px 16px}.what-card,.steps-card,.penal-card,.legal-card,.cta-section{padding:24px 20px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a href="/" class="logo">
+      <div class="logo-box">DCG</div>
+      <span>Conformidade DCG</span>
+    </a>
+    <a href="/" class="nav-back">← Voltar ao painel</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="urgency-bar">
+      <span class="dot"></span>
+      PRAZO ENCERRADO — Regularize agora para evitar processos à revelia
+    </div>
+    <div class="hero-badge">⚖️ Lei 14.195/2021 + Res. CNJ 455/2022</div>
+    <h1>
+      <span class="dje">DJE</span> — Domicílio<br>Judicial Eletrônico
+      <span class="sub">Sua empresa pode ter processos<br>correndo à revelia sem saber.</span>
+    </h1>
+    <p class="hero-desc">
+      Sem cadastro no portal do CNJ, citações judiciais podem ser feitas por edital.
+      O processo corre. Os prazos vencem. Você só descobre quando um
+      <strong>bloqueio judicial chega à sua conta bancária.</strong>
+    </p>
+    <div class="hero-cta">
+      <a href="https://wa.me/5511994104891?text=Ol%C3%A1%20Diniz%2C%20preciso%20regularizar%20o%20DJE%20da%20minha%20empresa" class="btn btn-amber">
+        📲 Falar com Diniz agora
+      </a>
+      <a href="https://domicilio-judicial.cnj.jus.br/" target="_blank" class="btn btn-outline">
+        ⚖️ Acessar portal CNJ
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="deadline-section">
+  <div class="wrap">
+    <div class="dl-card red">
+      <div class="icon">🚨</div>
+      <h3>Status</h3>
+      <div class="value">PRAZO VENCIDO</div>
+      <p>Regularize o quanto antes para evitar que processos corram à sua revelia.</p>
+    </div>
+    <div class="dl-card amber">
+      <div class="icon">⚖️</div>
+      <h3>Risco principal</h3>
+      <div class="value">Revelia processual</div>
+      <p>Sem cadastro, citações podem ser feitas por edital — processo corre sem você saber.</p>
+    </div>
+    <div class="dl-card blue">
+      <div class="icon">🏛️</div>
+      <h3>Base legal</h3>
+      <div class="value">Lei 14.195/2021</div>
+      <p>+ Resolução CNJ nº 455/2022. Obrigatório para pessoas jurídicas brasileiras.</p>
+    </div>
+    <div class="dl-card red">
+      <div class="icon">💸</div>
+      <h3>Sanção processual</h3>
+      <div class="value">Até 5% do valor da causa</div>
+      <p>Por ato atentatório à dignidade da justiça — além de bloqueio judicial de contas.</p>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="what-card">
+    <h2>⚖️ O que é o DJE?</h2>
+    <p>
+      O <strong>Domicílio Judicial Eletrônico (DJE)</strong> é um sistema do CNJ criado pela Lei nº 14.195/2021
+      que centraliza as comunicações processuais eletrônicas — citações, intimações e notificações — para
+      pessoas jurídicas registradas no Brasil.
+    </p>
+    <p>
+      Em linguagem direta: é o "endereço oficial" da sua empresa no sistema judiciário.
+      Qualquer comunicação judicial pode ser enviada para esse portal.
+    </p>
+    <div class="highlight-box">
+      <p>
+        ⚠️ <strong>O risco real não é a multa — é o bloqueio:</strong> Se sua empresa não estiver cadastrada
+        e for citada por edital, o processo corre normalmente. Prazos vencem. A sentença é proferida.
+        E você só descobre quando um <strong>bloqueio judicial (BacenJud) chega à sua conta</strong> —
+        sem nenhuma chance de defesa.
+      </p>
+    </div>
+    <div class="danger-box">
+      <p>
+        🚨 <strong>Como funciona na prática:</strong> O tribunal tenta primeiro a citação eletrônica via DJE.
+        Se a empresa não confirmar o recebimento em 3 dias úteis, pode ser multada em até 5% do valor
+        da causa (CPC, art. 77). Se não for localizada, o juiz autoriza a citação por edital — e a
+        revelia se torna uma consequência real e imediata.
+      </p>
+    </div>
+  </div>
+
+  <div class="what-card">
+    <h2>🏢 Quem precisa se cadastrar?</h2>
+    <div class="quem-grid">
+      <div class="quem-card"><span class="quem-icon">🏢</span><div><h4>Ltda., S/A e EIRELI</h4><p>Todas as sociedades empresárias com CNPJ ativo, sem exceção.</p></div></div>
+      <div class="quem-card"><span class="quem-icon">🏗️</span><div><h4>Grandes e Médias Empresas</h4><p>Especialmente aquelas com maior exposição a litígios trabalhistas, cíveis e tributários.</p></div></div>
+      <div class="quem-card"><span class="quem-icon">🏨</span><div><h4>Setor de Hospitalidade</h4><p>Hotéis, restaurantes, bares e eventos — todos com CNPJ ativo no setor.</p></div></div>
+      <div class="quem-card"><span class="quem-icon">🏪</span><div><h4>ME e EPP</h4><p>O CNJ recomenda o cadastro a todas as pessoas jurídicas, incluindo pequenos negócios.</p></div></div>
+    </div>
+  </div>
+
+  <div class="steps-card">
+    <h2>✅ Como regularizar em 4 passos</h2>
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h4>Acesse o portal oficial do CNJ</h4>
+        <p>Use o certificado digital (e-CNPJ) ou conta Gov.br para autenticação segura.</p>
+        <a href="https://domicilio-judicial.cnj.jus.br/" target="_blank">→ Acessar domicilio-judicial.cnj.jus.br ↗</a>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h4>Informe e-mail e WhatsApp para alertas</h4>
+        <p>Cadastre contatos confiáveis para receber alertas automáticos sobre novas citações e intimações.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h4>Configure as preferências de comunicação</h4>
+        <p>Indique o responsável legal da empresa. Se tiver advogado, inclua-o também no sistema.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h4>Monitore regularmente o portal</h4>
+        <p>Os prazos processuais correm a partir da disponibilização no sistema — não do recebimento do e-mail. Acesse com frequência.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="penal-card">
+    <h2>🚨 Consequências do descumprimento</h2>
+    <p class="penal-subtitle">Base legal: Lei 14.195/2021, Res. CNJ 455/2022 e CPC</p>
+    <div class="penal-grid">
+      <div class="penal-item">
+        <div class="num">Revelia processual</div>
+        <p>O processo corre sem sua participação. Prazos vencem. Sentença é proferida contra você.</p>
+      </div>
+      <div class="penal-item">
+        <div class="num">Bloqueio judicial de contas</div>
+        <p>Via BacenJud: o dinheiro sai da conta antes mesmo de você saber que havia uma ação.</p>
+      </div>
+      <div class="penal-item">
+        <div class="num">Até 5% do valor da causa</div>
+        <p>Multa por ato atentatório à dignidade da justiça (CPC, art. 77) por não confirmar citação no prazo de 3 dias úteis.</p>
+      </div>
+      <div class="penal-item">
+        <div class="num">Perda irreversível de prazos</div>
+        <p>Recursos, contestações e provas — tudo precluído. Sem possibilidade de defesa retroativa.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="legal-card">
+    <h2>📚 Base legal</h2>
+    <div class="legal-item">
+      <span class="legal-tag">Lei 14.195/2021</span>
+      <div><h4>Lei de Ambiente de Negócios</h4><p>Institui o Domicílio Judicial Eletrônico como obrigação para pessoas jurídicas. Visa modernizar e desburocratizar as comunicações processuais no Brasil.</p></div>
+    </div>
+    <div class="legal-item">
+      <span class="legal-tag">Res. CNJ 455/2022</span>
+      <div><h4>Resolução CNJ nº 455/2022</h4><p>Regulamenta o DJE: define prazos, responsabilidades e os critérios de ciência presumida para empresas cadastradas e não cadastradas.</p></div>
+    </div>
+    <div class="legal-item">
+      <span class="legal-tag">CPC art. 77</span>
+      <div><h4>Código de Processo Civil — Deveres das Partes</h4><p>Prevê multa de até 5% do valor da causa por ato atentatório à dignidade da justiça, incluindo o não cumprimento de exigências processuais dentro do prazo.</p></div>
+    </div>
+    <div class="legal-item">
+      <span class="legal-tag">Prazo</span>
+      <div><h4>Prazo final encerrado — regularize agora</h4><p>Empresas sem cadastro estão em situação irregular. Quanto mais tempo sem regularização, maior a exposição a processos correndo sem seu conhecimento.</p></div>
+    </div>
+  </div>
+
+  <div class="outras-section">
+    <h2>📋 Veja também as demais obrigações 2026</h2>
+    <div class="outras-grid">
+      <a href="/dte" class="outra-card">
+        <div class="badge badge-red">🔴 Obrigatório desde 01/01/2026</div>
+        <h3>DTE</h3>
+        <p>Domicílio Tributário Eletrônico. Cadastro no e-CAC da Receita Federal para intimações tributárias.</p>
+        <div class="prazo" style="color:#DC2626">IN RFB 2.154/2023 →</div>
+      </a>
+      <a href="/ebef" class="outra-card">
+        <div class="badge badge-blue">🔵 Cronograma até 2028</div>
+        <h3>e-BEF</h3>
+        <p>Declaração de Beneficiário Final. Sócios com 25%+ ou controle significativo devem ser declarados à Receita.</p>
+        <div class="prazo" style="color:#1D4ED8">IN RFB 1.634/2016 →</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <h2>Regularize hoje.<br>Não espere o bloqueio chegar.</h2>
+    <p>Nossa equipe orienta sua empresa em cada passo do cadastro — gratuitamente. Entre em contato agora.</p>
+    <div class="cta-buttons">
+      <a href="https://wa.me/5511994104891?text=Ol%C3%A1%20Diniz%2C%20preciso%20de%20ajuda%20para%20regularizar%20o%20DJE%20da%20minha%20empresa" class="btn btn-amber">
+        📲 WhatsApp (11) 99410-4891
+      </a>
+      <a href="/" class="btn btn-outline">
+        🔍 Verificar meu CNPJ
+      </a>
+    </div>
+    <div class="cta-contacts">
+      <span>🌐 conformidade.dcgseguros.com.br</span>
+      <span>🌐 www.dcgseguros.com.br</span>
+      <span>SUSEP · ANS · LGPD</span>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="links">
+      <a href="/">Painel</a>
+      <a href="/dje">DJE</a>
+      <a href="/dte">DTE</a>
+      <a href="/ebef">e-BEF</a>
+      <a href="https://www.dcgseguros.com.br" target="_blank">dcgseguros.com.br</a>
+      <a href="https://www.dcgseguros.io" target="_blank">dcgseguros.io</a>
+    </div>
+    <div class="brand">
+      <strong>DCG Corretora de Seguros LTDA</strong> — Nadjair Diniz Barbosa (Fundador e Diretor)<br>
+      CNPJ 16.383.565/0001-35 · SUSEP · ANS · LGPD · (11) 99410-4891
+    </div>
+    <div class="copy">© 2026 DCG Corretora de Seguros LTDA. Todos os direitos reservados.</div>
+    <div class="filosofia">
+      🕊️ <em>"No meio da correria, lembre-se: você é mortal. Respire. Reflita."</em><br>
+      Cuide também da sua alma — <a href="https://filosofia-viva-503f7d40.base44.app" target="_blank">filosofia-viva-503f7d40.base44.app</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

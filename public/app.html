@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Área do Cliente — Conformidade DCG</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231565A8'/><text x='50' y='68' font-size='45' font-weight='900' fill='white' text-anchor='middle'>DCG</text></svg>">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',system-ui,sans-serif;color:#1E293B;background:#F0F4F8;min-height:100vh}
+a{color:#1565A8;text-decoration:none}a:hover{text-decoration:underline}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:10px;font-size:14px;font-weight:700;border:none;cursor:pointer;transition:all .2s;font-family:inherit;text-decoration:none}
+.btn-primary{background:#1565A8;color:#fff}.btn-primary:hover{background:#0D4A7A}
+.btn-danger{background:#DC2626;color:#fff}.btn-ghost{background:transparent;color:#64748B}
+.btn-sm{padding:8px 14px;font-size:13px}
+.btn-full{width:100%;justify-content:center}
+.input{width:100%;padding:12px 14px;border-radius:10px;border:2px solid #E2E8F0;font-size:14px;font-family:inherit;outline:none}
+.input:focus{border-color:#1565A8}
+.card{background:#fff;border-radius:16px;padding:24px;border:1px solid #E2E8F0;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:700}
+.badge-free{background:#F1F5F9;color:#64748B}.badge-starter{background:#E8F1FA;color:#1565A8}.badge-pro{background:#FEF9C3;color:#92400E}.badge-agency{background:#F3E8FF;color:#7C3AED}
+.badge-ok{background:#DCFCE7;color:#16A34A}.badge-warn{background:#FEF9C3;color:#EAB308}.badge-danger{background:#FEE2E2;color:#DC2626}
+
+/* Auth screen */
+.auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,#1565A8,#0D4A7A)}
+.auth-box{background:#fff;border-radius:20px;padding:40px;max-width:440px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.auth-logo{text-align:center;margin-bottom:24px}
+.auth-logo .box{width:60px;height:60px;border-radius:14px;background:#1565A8;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:900;font-size:20px;margin-bottom:12px}
+.auth-logo h2{font-size:22px;font-weight:900}
+.auth-logo p{font-size:13px;color:#64748B;margin-top:4px}
+.auth-tabs{display:flex;gap:4px;margin-bottom:24px;background:#F1F5F9;padding:4px;border-radius:10px}
+.auth-tab{flex:1;padding:10px;border:none;background:none;cursor:pointer;font-size:14px;font-weight:700;border-radius:8px;font-family:inherit;color:#64748B}
+.auth-tab.active{background:#fff;color:#1565A8;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.auth-form{display:none}.auth-form.active{display:block}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:#334155}
+.auth-error{background:#FEE2E2;color:#DC2626;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:600;margin-bottom:16px;display:none}
+.auth-success{background:#DCFCE7;color:#16A34A;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:600;margin-bottom:16px;display:none}
+
+/* App layout */
+.app{display:none}
+.app.active{display:block}
+.app-header{background:#fff;border-bottom:1px solid #E2E8F0;padding:12px 24px;position:sticky;top:0;z-index:50}
+.app-header .inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.app-logo{display:flex;align-items:center;gap:10px}
+.app-logo .box{width:36px;height:36px;border-radius:8px;background:#1565A8;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px}
+.app-user{display:flex;align-items:center;gap:12px;font-size:13px}
+.app-main{max-width:1200px;margin:0 auto;padding:24px}
+.app-nav{display:flex;gap:4px;margin-bottom:24px;overflow-x:auto}
+.app-nav button{padding:10px 18px;border-radius:10px;border:none;cursor:pointer;font-size:13px;font-weight:600;background:#fff;color:#64748B;font-family:inherit;white-space:nowrap;border:1px solid #E2E8F0}
+.app-nav button.active{background:#1565A8;color:#fff;border-color:#1565A8}
+.app-page{display:none}.app-page.active{display:block}
+.grid-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}
+.kpi{text-align:center;padding:20px}
+.kpi .value{font-size:32px;font-weight:900}
+.kpi .label{font-size:11px;color:#64748B;font-weight:600;text-transform:uppercase;margin-top:6px;letter-spacing:.5px}
+.cnpj-list{display:flex;flex-direction:column;gap:12px}
+.cnpj-row{display:flex;align-items:center;gap:16px;padding:16px;border:1px solid #E2E8F0;border-radius:12px;background:#fff;flex-wrap:wrap}
+.cnpj-row:hover{border-color:#1565A8}
+.cnpj-info{flex:1;min-width:200px}
+.cnpj-info h4{font-weight:700;font-size:15px}
+.cnpj-info p{font-size:12px;color:#64748B;font-family:monospace}
+.cnpj-score{text-align:center;min-width:60px}
+.cnpj-score .val{font-size:22px;font-weight:900}
+.cnpj-score .lbl{font-size:10px;color:#64748B;font-weight:600}
+.modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:100;align-items:center;justify-content:center;padding:20px}
+.modal.active{display:flex}
+.modal-box{background:#fff;border-radius:16px;padding:32px;max-width:500px;width:100%;max-height:90vh;overflow-y:auto}
+.modal h3{font-weight:900;font-size:20px;margin-bottom:16px}
+.close-x{float:right;background:none;border:none;font-size:24px;cursor:pointer;color:#64748B}
+.obrig-item{display:flex;align-items:center;gap:12px;padding:12px;border-bottom:1px solid #E2E8F0;cursor:pointer}
+.obrig-item:hover{background:#F8FAFC}
+.obrig-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.plano-card{padding:24px;border-radius:14px;border:2px solid #E2E8F0;position:relative}
+.plano-card.current{border-color:#16A34A;background:#F0FDF4}
+.plano-card.recommended{border-color:#1565A8}
+.plano-tag{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:#1565A8;color:#fff;padding:3px 12px;border-radius:99px;font-size:11px;font-weight:800}
+.plano-nome{font-weight:900;font-size:18px}
+.plano-preco{font-size:30px;font-weight:900;margin:8px 0}
+.plano-preco small{font-size:14px;color:#64748B;font-weight:500}
+.plano-feat{font-size:13px;padding:4px 0;color:#334155}
+.plano-feat::before{content:"✓ ";color:#16A34A;font-weight:700}
+</style>
+</head>
+<body>
+
+<!-- AUTH (login/cadastro) -->
+<div id="auth" class="auth-wrap">
+<div class="auth-box">
+<div class="auth-logo"><div class="box">DCG</div><h2>Conformidade DCG</h2><p>Área do cliente</p></div>
+<div class="auth-tabs">
+<button class="auth-tab active" onclick="showAuthTab('login')">Entrar</button>
+<button class="auth-tab" onclick="showAuthTab('cadastro')">Criar conta grátis</button>
+</div>
+<div id="auth-error" class="auth-error"></div>
+<div id="auth-success" class="auth-success"></div>
+
+<form id="form-login" class="auth-form active" onsubmit="doLogin(event)">
+<div class="form-group"><label>E-mail</label><input type="email" class="input" name="email" required></div>
+<div class="form-group"><label>Senha</label><input type="password" class="input" name="senha" required></div>
+<button type="submit" class="btn btn-primary btn-full">Entrar</button>
+<p style="text-align:center;margin-top:12px;font-size:13px"><a href="#" onclick="esqueciSenha();return false" style="color:#1565A8">Esqueci minha senha</a></p>
+</form>
+
+<form id="form-cadastro" class="auth-form" onsubmit="doCadastro(event)">
+<div class="form-group"><label>Nome completo</label><input type="text" class="input" name="nome" required></div>
+<div class="form-group"><label>E-mail</label><input type="email" class="input" name="email" required></div>
+<div class="form-group"><label>WhatsApp (com DDD)</label><input type="tel" class="input" name="telefone" placeholder="(11) 99999-9999"></div>
+<div class="form-group"><label>Senha (mín. 6 caracteres)</label><input type="password" class="input" name="senha" minlength="6" required></div>
+<button type="submit" class="btn btn-primary btn-full">Criar conta grátis</button>
+<p style="font-size:12px;color:#64748B;text-align:center;margin-top:12px">Plano Free: 1 CNPJ monitorado gratuitamente</p>
+</form>
+
+<p style="text-align:center;margin-top:20px;font-size:13px"><a href="/">← Voltar ao site</a></p>
+</div>
+</div>
+
+<!-- APP (após login) -->
+<div id="app" class="app">
+<header class="app-header"><div class="inner">
+<div class="app-logo" onclick="goPage('dashboard')" style="cursor:pointer"><div class="box">DCG</div><div><div style="font-weight:800;font-size:15px">Conformidade DCG</div><div style="font-size:11px;color:#64748B">Área do Cliente</div></div></div>
+<div class="app-user">
+<span id="user-plano" class="badge badge-free">FREE</span>
+<span id="user-nome"></span>
+<button class="btn btn-sm btn-ghost" onclick="doLogout()">Sair</button>
+</div>
+</div></header>
+
+<main class="app-main">
+<nav class="app-nav">
+<button onclick="goPage('dashboard')" class="active" data-page="dashboard">📊 Dashboard</button>
+<button onclick="goPage('cnpjs')" data-page="cnpjs">🏢 Meus CNPJs</button>
+<button onclick="goPage('alertas')" data-page="alertas">🔔 Alertas</button>
+<button onclick="goPage('planos')" data-page="planos">💎 Planos</button>
+<button onclick="goPage('conta')" data-page="conta">⚙️ Minha Conta</button>
+</nav>
+
+<div id="page-dashboard" class="app-page active">
+<h1 style="font-size:24px;font-weight:900;margin-bottom:20px">Dashboard</h1>
+<div class="grid-kpis">
+<div class="card kpi"><div class="value" id="kpi-cnpjs">0</div><div class="label">CNPJs Monitorados</div></div>
+<div class="card kpi"><div class="value" style="color:#16A34A" id="kpi-score">—</div><div class="label">Score Médio</div></div>
+<div class="card kpi"><div class="value" style="color:#DC2626" id="kpi-pendencias">0</div><div class="label">Pendências</div></div>
+<div class="card kpi"><div class="value" id="kpi-limite">1</div><div class="label">Limite do Plano</div></div>
+</div>
+<div class="card"><h3 style="font-weight:800;margin-bottom:12px">📌 Começando</h3><ol style="padding-left:20px;line-height:2;font-size:14px;color:#334155"><li>Adicione seu primeiro CNPJ em <strong>Meus CNPJs</strong></li><li>Verifique os dados cadastrais da Receita Federal</li><li>Regularize DTE e DJE seguindo as instruções oficiais</li><li>Marque as obrigações conforme vai cumprindo</li><li>Receba alertas automáticos de prazos por e-mail e WhatsApp</li></ol></div>
+</div>
+
+<div id="page-cnpjs" class="app-page">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px">
+<h1 style="font-size:24px;font-weight:900">Meus CNPJs</h1>
+<button class="btn btn-primary" onclick="openModalAddCNPJ()">+ Adicionar CNPJ</button>
+</div>
+<div id="cnpjs-list" class="cnpj-list"><p style="color:#64748B;text-align:center;padding:40px">Carregando...</p></div>
+</div>
+
+<div id="page-alertas" class="app-page">
+<h1 style="font-size:24px;font-weight:900;margin-bottom:20px">Alertas</h1>
+<div id="alertas-list"><p style="color:#64748B;text-align:center;padding:40px">Nenhum alerta ainda. Adicione CNPJs para começar a receber notificações.</p></div>
+</div>
+
+<div id="page-planos" class="app-page">
+<h1 style="font-size:24px;font-weight:900;margin-bottom:20px">Planos</h1>
+<p style="color:#64748B;margin-bottom:24px">Escolha o plano ideal para o número de CNPJs que você precisa monitorar.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px" id="planos-grid"></div>
+</div>
+
+<div id="page-conta" class="app-page">
+<h1 style="font-size:24px;font-weight:900;margin-bottom:20px">Minha Conta</h1>
+<div class="card" id="conta-info"></div>
+</div>
+</main>
+</div>
+
+<!-- Modal Adicionar CNPJ -->
+<div id="modal-cnpj" class="modal">
+<div class="modal-box">
+<button class="close-x" onclick="closeModal('modal-cnpj')">×</button>
+<h3>Adicionar CNPJ</h3>
+<p style="font-size:13px;color:#64748B;margin-bottom:16px">Consultamos seus dados direto na Receita Federal.</p>
+<div id="cnpj-modal-error" class="auth-error"></div>
+<div class="form-group"><label>CNPJ</label><input type="text" id="new-cnpj" class="input" placeholder="00.000.000/0000-00" maxlength="18"></div>
+<div class="form-group"><label>Apelido (opcional)</label><input type="text" id="new-apelido" class="input" placeholder="Ex: Matriz, Filial SP"></div>
+<button class="btn btn-primary btn-full" onclick="saveCNPJ()">Consultar e Adicionar</button>
+</div>
+</div>
+
+<!-- Modal Detalhe CNPJ -->
+<div id="modal-detalhe" class="modal">
+<div class="modal-box" style="max-width:700px">
+<button class="close-x" onclick="closeModal('modal-detalhe')">×</button>
+<div id="detalhe-content"></div>
+</div>
+</div>
+
+<script>
+const API = '';
+let TOKEN = localStorage.getItem('dcg_token');
+let USER = null;
+const LIMITES = { free: 1, starter: 3, pro: 10, agency: 50 };
+const OBRIG_INFO = {
+  dte: { nome: 'DTE', full: 'Domicílio Tributário Eletrônico', link: 'https://cav.receita.fazenda.gov.br/' },
+  dje: { nome: 'DJE', full: 'Domicílio Judicial Eletrônico', link: 'https://domicilio-eletronico.cnj.jus.br/' },
+  ebef: { nome: 'e-BEF', full: 'Beneficiário Final', link: 'https://cav.receita.fazenda.gov.br/' },
+  ecf: { nome: 'ECF', full: 'Escrituração Contábil Fiscal', link: 'https://www.gov.br/receitafederal/pt-br' },
+  ecd: { nome: 'ECD', full: 'Escrituração Contábil Digital', link: 'http://sped.rfb.gov.br/' },
+  dctf: { nome: 'DCTF', full: 'Débitos e Créditos Tributários', link: 'https://www.gov.br/receitafederal/pt-br' },
+  defis: { nome: 'DEFIS', full: 'Declaração Simples Nacional', link: 'https://www8.receita.fazenda.gov.br/SimplesNacional/' },
+  esocial: { nome: 'eSocial', full: 'Obrigações Trabalhistas', link: 'https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/esocial' },
+  pgr: { nome: 'PGR/NR-1', full: 'Gerenciamento de Riscos', link: 'https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/seguranca-e-saude-no-trabalho/normas-regulamentadoras' },
+  pcmso: { nome: 'PCMSO', full: 'Controle Médico', link: 'https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/seguranca-e-saude-no-trabalho/normas-regulamentadoras' },
+  lgpd: { nome: 'LGPD', full: 'Proteção de Dados', link: 'https://www.gov.br/anpd/pt-br' }
+};
+
+function showAuthTab(tab) {
+  document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('form-' + tab).classList.add('active');
+  document.getElementById('auth-error').style.display = 'none';
+  document.getElementById('auth-success').style.display = 'none';
+}
+
+function showAuthError(msg) {
+  const e = document.getElementById('auth-error');
+  e.textContent = msg; e.style.display = 'block';
+}
+function showAuthSuccess(msg) {
+  const e = document.getElementById('auth-success');
+  e.textContent = msg; e.style.display = 'block';
+}
+
+async function doLogin(e) {
+  e.preventDefault();
+  const f = new FormData(e.target);
+  try {
+    const r = await fetch('/api/auth/login', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({email: f.get('email'), senha: f.get('senha')}) });
+    const d = await r.json();
+    if (!r.ok) return showAuthError(d.erro);
+    TOKEN = d.token; localStorage.setItem('dcg_token', TOKEN);
+    USER = d.usuario;
+    enterApp();
+  } catch (err) { showAuthError('Erro de conexão'); }
+}
+
+async function doCadastro(e) {
+  e.preventDefault();
+  const f = new FormData(e.target);
+  try {
+    const r = await fetch('/api/auth/cadastro', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({nome: f.get('nome'), email: f.get('email'), senha: f.get('senha'), telefone: f.get('telefone')}) });
+    const d = await r.json();
+    if (!r.ok) return showAuthError(d.erro);
+    TOKEN = d.token; localStorage.setItem('dcg_token', TOKEN);
+    USER = d.usuario;
+    showAuthSuccess('Conta criada! Verifique seu e-mail.');
+    setTimeout(enterApp, 1000);
+  } catch (err) { showAuthError('Erro ao cadastrar'); }
+}
+
+function doLogout() {
+  localStorage.removeItem('dcg_token');
+  TOKEN = null; USER = null;
+  document.getElementById('auth').style.display = 'flex';
+  document.getElementById('app').classList.remove('active');
+}
+
+async function api(path, opts = {}) {
+  opts.headers = Object.assign({'Content-Type':'application/json','Authorization':'Bearer '+TOKEN}, opts.headers||{});
+  const r = await fetch('/api' + path, opts);
+  if (r.status === 401) { doLogout(); return null; }
+  return r.json();
+}
+
+async function enterApp() {
+  document.getElementById('auth').style.display = 'none';
+  document.getElementById('app').classList.add('active');
+  if (!USER) {
+    const d = await api('/auth/me');
+    if (!d) return;
+    USER = d.usuario;
+  }
+  document.getElementById('user-nome').textContent = USER.nome;
+  const p = USER.plano || 'free';
+  document.getElementById('user-plano').textContent = p.toUpperCase();
+  document.getElementById('user-plano').className = 'badge badge-' + p;
+  document.getElementById('kpi-limite').textContent = LIMITES[p];
+  loadCNPJs();
+}
+
+function goPage(page) {
+  document.querySelectorAll('.app-page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.app-nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  document.querySelector('[data-page="'+page+'"]').classList.add('active');
+  if (page === 'cnpjs') loadCNPJs();
+  if (page === 'planos') renderPlanos();
+  if (page === 'conta') renderConta();
+}
+
+async function loadCNPJs() {
+  const d = await api('/cnpjs');
+  if (!d) return;
+  const list = document.getElementById('cnpjs-list');
+  document.getElementById('kpi-cnpjs').textContent = d.cnpjs.length;
+  const scores = d.cnpjs.map(c => c.score || 0);
+  document.getElementById('kpi-score').textContent = scores.length ? Math.round(scores.reduce((a,b)=>a+b,0)/scores.length) : '—';
+  if (!d.cnpjs.length) {
+    list.innerHTML = '<div class="card" style="text-align:center;padding:40px"><p style="color:#64748B;margin-bottom:16px">Nenhum CNPJ cadastrado ainda.</p><button class="btn btn-primary" onclick="openModalAddCNPJ()">+ Adicionar primeiro CNPJ</button></div>';
+    return;
+  }
+  list.innerHTML = d.cnpjs.map(c => {
+    const col = c.score>=80?'#16A34A':c.score>=50?'#EAB308':'#DC2626';
+    const sit = c.situacao==='ATIVA'?'badge-ok':'badge-danger';
+    return '<div class="cnpj-row" onclick="openDetalhe('+c.id+')"><div class="cnpj-info"><h4>'+(c.apelido||c.razao_social||'Sem nome')+'</h4><p>'+c.cnpj+'</p></div><span class="badge '+sit+'">'+(c.situacao||'—')+'</span><div class="cnpj-score"><div class="val" style="color:'+col+'">'+(c.score||0)+'</div><div class="lbl">SCORE</div></div></div>';
+  }).join('');
+}
+
+function formatCNPJ(v){return v.replace(/\D/g,'').replace(/^(\d{2})(\d)/,'$1.$2').replace(/^(\d{2})\.(\d{3})(\d)/,'$1.$2.$3').replace(/\.(\d{3})(\d)/,'.$1/$2').replace(/(\d{4})(\d)/,'$1-$2').slice(0,18)}
+
+function openModalAddCNPJ() {
+  document.getElementById('new-cnpj').value = '';
+  document.getElementById('new-apelido').value = '';
+  document.getElementById('cnpj-modal-error').style.display = 'none';
+  document.getElementById('modal-cnpj').classList.add('active');
+}
+function closeModal(id){document.getElementById(id).classList.remove('active')}
+
+document.getElementById('new-cnpj').addEventListener('input', function(){this.value=formatCNPJ(this.value)});
+
+async function saveCNPJ() {
+  const cnpj = document.getElementById('new-cnpj').value;
+  const apelido = document.getElementById('new-apelido').value;
+  const err = document.getElementById('cnpj-modal-error');
+  err.style.display = 'none';
+  const r = await fetch('/api/cnpjs', { method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer '+TOKEN}, body: JSON.stringify({cnpj, apelido}) });
+  const d = await r.json();
+  if (!r.ok) { err.textContent = d.erro; err.style.display = 'block'; return; }
+  closeModal('modal-cnpj');
+  loadCNPJs();
+}
+
+async function openDetalhe(id) {
+  const d = await api('/cnpjs/' + id);
+  if (!d) return;
+  const c = d.cnpj;
+  let h = '<h3>'+(c.apelido||c.razao_social)+'</h3>';
+  h += '<p style="color:#64748B;font-family:monospace;font-size:13px;margin-bottom:16px">'+c.cnpj+'</p>';
+  h += '<div style="background:#F8FAFC;padding:14px;border-radius:10px;margin-bottom:20px;font-size:13px;line-height:1.8">';
+  h += '<strong>Razão Social:</strong> '+(c.razao_social||'—')+'<br>';
+  h += '<strong>Situação:</strong> <span class="badge '+(c.situacao==='ATIVA'?'badge-ok':'badge-danger')+'">'+(c.situacao||'—')+'</span><br>';
+  h += '<strong>E-mail Receita:</strong> '+(c.email_receita||'<span style="color:#DC2626">⚠️ Não informado — atualize no e-CAC!</span>')+'<br>';
+  h += '<strong>Telefone:</strong> '+(c.telefone_receita||'<span style="color:#DC2626">⚠️ Não informado</span>')+'<br>';
+  h += '<strong>Endereço:</strong> '+(c.endereco||'—')+'</div>';
+  h += '<h4 style="font-weight:800;margin-bottom:12px">Obrigações Legais</h4>';
+  h += '<p style="font-size:12px;color:#64748B;margin-bottom:12px">Clique em cada obrigação para alterar o status.</p>';
+  d.obrigacoes.forEach(o => {
+    const info = OBRIG_INFO[o.obrigacao] || { nome: o.obrigacao, full: '', link: '#' };
+    const emoji = o.status==='ok'?'✅':o.status==='warn'?'🔄':'❌';
+    const bg = o.status==='ok'?'#DCFCE7':o.status==='warn'?'#FEF9C3':'#FEE2E2';
+    h += '<div class="obrig-item" onclick="toggleObrig('+c.id+',\''+o.obrigacao+'\',\''+o.status+'\')"><div class="obrig-icon" style="background:'+bg+'">'+emoji+'</div><div style="flex:1"><strong>'+info.nome+'</strong> <span style="font-size:12px;color:#64748B">'+info.full+'</span></div><a href="'+info.link+'" target="_blank" onclick="event.stopPropagation()" style="font-size:12px">Portal oficial →</a></div>';
+  });
+  h += '<div style="display:flex;gap:8px;margin-top:20px"><button class="btn btn-sm btn-primary" onclick="reconsultar('+c.id+')">🔄 Reconsultar Receita</button><button class="btn btn-sm btn-danger" onclick="deleteCNPJ('+c.id+')">🗑️ Remover</button></div>';
+  document.getElementById('detalhe-content').innerHTML = h;
+  document.getElementById('modal-detalhe').classList.add('active');
+}
+
+async function toggleObrig(cnpjId, obrig, current) {
+  const cycle = {danger:'warn', warn:'ok', ok:'danger'};
+  await api('/cnpjs/'+cnpjId+'/obrigacao/'+obrig, { method:'PUT', body: JSON.stringify({status: cycle[current]}) });
+  openDetalhe(cnpjId);
+  loadCNPJs();
+}
+
+async function reconsultar(id) {
+  await api('/cnpjs/'+id+'/reconsultar', { method:'POST' });
+  openDetalhe(id);
+  loadCNPJs();
+}
+
+async function deleteCNPJ(id) {
+  if (!confirm('Remover este CNPJ?')) return;
+  await api('/cnpjs/'+id, { method:'DELETE' });
+  closeModal('modal-detalhe');
+  loadCNPJs();
+}
+
+function renderPlanos() {
+  const planos = [
+    { id:'free', nome:'Free', preco:0, cnpjs:1, feats:['1 CNPJ monitorado','Consulta Receita Federal','Checklist de obrigações','Alertas por e-mail'] },
+    { id:'starter', nome:'Starter', preco:19.90, cnpjs:3, feats:['3 CNPJs monitorados','Tudo do Free','Alertas WhatsApp','Monitoramento diário automático'] },
+    { id:'pro', nome:'Pro', preco:59.90, cnpjs:10, rec:true, feats:['10 CNPJs monitorados','Tudo do Starter','Relatórios PDF','Suporte prioritário'] },
+    { id:'agency', nome:'Agency', preco:149.90, cnpjs:50, feats:['50 CNPJs monitorados','Tudo do Pro','Painel multi-empresa','Suporte dedicado'] },
+  ];
+  document.getElementById('planos-grid').innerHTML = planos.map(p => {
+    const isCurrent = USER.plano === p.id;
+    const cls = isCurrent?'plano-card current':p.rec?'plano-card recommended':'plano-card';
+    let btn = '';
+    if (isCurrent) btn = '<div style="text-align:center;padding:12px;background:#16A34A;color:#fff;border-radius:8px;font-weight:700;margin-top:16px">✓ Plano Atual</div>';
+    else if (p.id === 'free') btn = '';
+    else btn = '<button class="btn btn-primary btn-full" style="margin-top:16px" onclick="fazerCheckout(\''+p.id+'\')">Assinar</button>';
+    let tag = isCurrent?'<div class="plano-tag" style="background:#16A34A">ATUAL</div>':p.rec?'<div class="plano-tag">RECOMENDADO</div>':'';
+    return '<div class="'+cls+'">'+tag+'<div class="plano-nome">'+p.nome+'</div><div class="plano-preco">R$ '+(p.preco===0?'0':p.preco.toFixed(2).replace('.',','))+'<small>/mês</small></div>'+p.feats.map(f=>'<div class="plano-feat">'+f+'</div>').join('')+btn+'</div>';
+  }).join('');
+}
+
+async function fazerCheckout(plano) {
+  const r = await fetch('/api/checkout', { method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer '+TOKEN}, body: JSON.stringify({plano}) });
+  const d = await r.json();
+  if (d.checkout_url) window.location.href = d.checkout_url;
+  else alert('Erro ao iniciar pagamento');
+}
+
+function renderConta() {
+  const c = document.getElementById('conta-info');
+  c.innerHTML = '<h3 style="font-weight:800;margin-bottom:16px">Informações da conta</h3>'
+    + '<div style="line-height:2;font-size:14px"><strong>Nome:</strong> '+USER.nome+'<br>'
+    + '<strong>E-mail:</strong> '+USER.email+' '+(USER.email_verificado?'<span class="badge badge-ok">Verificado</span>':'<span class="badge badge-warn">Não verificado</span>')+'<br>'
+    + '<strong>Telefone:</strong> '+(USER.telefone||'Não informado')+'<br>'
+    + '<strong>Plano:</strong> <span class="badge badge-'+USER.plano+'">'+USER.plano.toUpperCase()+'</span></div>';
+}
+
+// Auto-login se tem token
+
+async function esqueciSenha() {
+  const email = prompt('Digite seu e-mail cadastrado:');
+  if (!email) return;
+  await fetch('/api/auth/esqueci-senha', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({email})});
+  alert('Se o e-mail estiver cadastrado, voce recebera um link para redefinir a senha em instantes.');
+}
+
+if (TOKEN) enterApp();
+</script>
+</body>
+</html>
