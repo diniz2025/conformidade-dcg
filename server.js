@@ -8,6 +8,7 @@ import authRoutes from './backend/routes/auth.js';
 import cnpjsRoutes from './backend/routes/cnpjs.js';
 import pagamentosRoutes from './backend/routes/pagamentos.js';
 import adminRoutes from './backend/routes/admin.js';
+import parceirosRoutes from './backend/routes/parceiros.js';
 
 dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
@@ -40,6 +41,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/cnpjs', cnpjsRoutes);
 app.use('/api', pagamentosRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/parceiros', parceirosRoutes);
 
 // Health check
 app.get('/api/health', (req,res) => res.json({ ok: true, ts: new Date() }));

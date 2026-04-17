@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Como Usar - Conformidade DCG</title>
+<meta name="description" content="Guia passo a passo para usar o Conformidade DCG. Criar conta, adicionar CNPJ, regularizar DTE e DJE.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231565A8'/><text x='50' y='68' font-size='45' font-weight='900' fill='white' text-anchor='middle'>DCG</text></svg>">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;color:#0F172A;background:#fff;line-height:1.6}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:900px;margin:0 auto;padding:0 24px}
+nav{background:#fff;border-bottom:1px solid #E2E8F0;position:sticky;top:0;z-index:100}
+nav .inner{max-width:1080px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-box{width:36px;height:36px;border-radius:8px;background:#1565A8;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px}
+.logo strong{font-weight:800;font-size:17px}
+nav .links a{padding:10px 16px;font-size:14px;color:#475569;font-weight:500}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;border:none}
+.btn-primary{background:#1565A8;color:#fff}
+.btn-primary:hover{background:#0D4A7A}
+.btn-ghost{background:transparent;color:#0F172A;border:1px solid #CBD5E1}
+</style>
+</head>
+<body>
+<nav><div class="inner">
+<a href="/" class="logo"><div class="logo-box">DCG</div><strong>Conformidade DCG</strong></a>
+<div class="links">
+<a href="/">Inicio</a>
+<a href="/app.html" class="btn btn-primary" style="font-size:13px;padding:10px 18px">Acessar App</a>
+</div>
+</div></nav>
+<style>
+.hero{padding:80px 24px 40px;text-align:center;background:linear-gradient(180deg,#F8FAFC,#fff)}
+.eyebrow{display:inline-block;font-size:13px;font-weight:600;color:#1565A8;letter-spacing:.5px;text-transform:uppercase;margin-bottom:16px}
+h1.big{font-size:clamp(32px,5vw,54px);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:20px}
+.sub{font-size:18px;color:#475569;max-width:600px;margin:0 auto 32px}
+.toc{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+.toc a{background:#fff;border:1px solid #E2E8F0;padding:10px 18px;border-radius:99px;font-size:13px;font-weight:500;color:#475569;transition:all .15s}
+.toc a:hover{border-color:#1565A8;color:#1565A8}
+.step-block{padding:64px 24px;border-top:1px solid #F1F5F9}
+.step-header{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.step-num{width:52px;height:52px;border-radius:50%;background:#0F172A;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;flex-shrink:0}
+.step-header h2{font-size:clamp(24px,3.5vw,36px);font-weight:800;letter-spacing:-.02em;line-height:1.15}
+.step-lead{font-size:17px;color:#475569;max-width:700px;margin-bottom:32px}
+.step-diag{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:16px;padding:32px;margin-bottom:24px;display:flex;justify-content:center;overflow:hidden}
+.step-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.highlight{background:#FEF3C7;padding:2px 6px;border-radius:4px;font-weight:600}
+.callout{background:#EFF6FF;border-left:4px solid #1565A8;padding:16px 20px;border-radius:8px;margin:20px 0;font-size:14px;color:#1E3A8A}
+.callout strong{color:#0F172A}
+.callout.warn{background:#FEF3C7;border-color:#F59E0B;color:#78350F}
+</style>
+
+<section class="hero"><div class="wrap">
+<div class="eyebrow">Guia do usuario</div>
+<h1 class="big">Seu primeiro CNPJ monitorado em 5 passos</h1>
+<p class="sub">Sem juridiques. Sem enrolacao. Voce le, voce faz, pronto.</p>
+<div class="toc">
+<a href="#p1">1. Criar conta</a>
+<a href="#p2">2. Adicionar CNPJ</a>
+<a href="#p3">3. Ler o semaforo</a>
+<a href="#p4">4. Regularizar DTE</a>
+<a href="#p5">5. Regularizar DJE</a>
+</div>
+</div></section>
+<section id="p1" class="step-block"><div class="wrap">
+<div class="step-header"><div class="step-num">1</div><h2>Crie sua conta gratuita</h2></div>
+<p class="step-lead">Leva 30 segundos. Voce so precisa de um email valido. O plano Free permite <span class="highlight">1 CNPJ monitorado</span> sem custo.</p>
+
+<div class="step-diag">
+<svg width="560" height="280" viewBox="0 0 560 280" xmlns="http://www.w3.org/2000/svg">
+<rect x="140" y="20" width="280" height="240" rx="16" fill="#fff" stroke="#CBD5E1" stroke-width="2"/>
+<circle cx="280" cy="60" r="22" fill="#1565A8"/>
+<text x="280" y="67" text-anchor="middle" font-family="Inter" font-size="16" font-weight="800" fill="#fff">DCG</text>
+<text x="280" y="110" text-anchor="middle" font-family="Inter" font-size="15" font-weight="700" fill="#0F172A">Criar conta gratis</text>
+<rect x="170" y="130" width="220" height="30" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+<text x="180" y="150" font-family="Inter" font-size="11" fill="#94A3B8">Nome completo</text>
+<rect x="170" y="170" width="220" height="30" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+<text x="180" y="190" font-family="Inter" font-size="11" fill="#94A3B8">seu@email.com</text>
+<rect x="170" y="215" width="220" height="34" rx="6" fill="#F59E0B"/>
+<text x="280" y="237" text-anchor="middle" font-family="Inter" font-size="13" font-weight="700" fill="#fff">Criar conta gratis</text>
+<path d="M 440 232 Q 490 232 490 200" stroke="#DC2626" stroke-width="2" fill="none" stroke-dasharray="4 3"/>
+<polygon points="485,198 494,202 491,193" fill="#DC2626"/>
+<text x="500" y="180" font-family="Inter" font-size="11" font-weight="700" fill="#DC2626">Clique aqui</text>
+</svg>
+</div>
+
+<ol style="padding-left:20px;font-size:15px;color:#334155;line-height:2">
+<li>Acesse <a href="/app.html" style="color:#1565A8;font-weight:600">conformidade.dcgseguros.com.br/app.html</a></li>
+<li>Clique na aba <strong>Criar conta gratis</strong></li>
+<li>Preencha nome, email, WhatsApp e crie uma senha com 6+ caracteres</li>
+<li>Pronto! Voce ja entra no dashboard</li>
+</ol>
+<div class="callout"><strong>Confirme o email:</strong> voce recebera uma mensagem no seu inbox. Clique no link para validar. Sem isso, voce nao recebe os alertas automaticos.</div>
+<div class="step-actions"><a href="/app.html" class="btn btn-primary">Criar conta agora</a></div>
+</div></section>
+
+<section id="p2" class="step-block"><div class="wrap">
+<div class="step-header"><div class="step-num">2</div><h2>Adicione seu CNPJ</h2></div>
+<p class="step-lead">O sistema consulta a Receita Federal em tempo real. Voce ve razao social, socios, endereco, email e telefone cadastrados no orgao.</p>
+
+<div class="step-diag">
+<svg width="560" height="280" viewBox="0 0 560 280" xmlns="http://www.w3.org/2000/svg">
+<rect x="20" y="20" width="520" height="240" rx="12" fill="#fff" stroke="#E2E8F0" stroke-width="1.5"/>
+<rect x="20" y="20" width="520" height="44" rx="12" fill="#0F172A"/>
+<text x="40" y="47" font-family="Inter" font-size="13" font-weight="700" fill="#fff">Meus CNPJs</text>
+<rect x="440" y="30" width="90" height="24" rx="5" fill="#F59E0B"/>
+<text x="485" y="46" text-anchor="middle" font-family="Inter" font-size="11" font-weight="700" fill="#fff">+ Adicionar</text>
+<path d="M 540 42 Q 560 42 560 20" stroke="#DC2626" stroke-width="2" fill="none" stroke-dasharray="4 3"/>
+<rect x="40" y="90" width="480" height="50" rx="8" fill="#F8FAFC" stroke="#E2E8F0"/>
+<text x="55" y="110" font-family="Inter" font-size="11" fill="#94A3B8" font-weight="600">CNPJ</text>
+<text x="55" y="130" font-family="monospace" font-size="16" font-weight="700" fill="#0F172A">16.383.565/0001-35</text>
+<rect x="40" y="155" width="480" height="80" rx="8" fill="#EFF6FF" stroke="#BFDBFE"/>
+<text x="55" y="178" font-family="Inter" font-size="11" fill="#1E40AF" font-weight="700">RAZAO SOCIAL</text>
+<text x="55" y="196" font-family="Inter" font-size="14" font-weight="700" fill="#0F172A">DCG CORRETORA DE SEGUROS LTDA</text>
+<text x="55" y="220" font-family="Inter" font-size="12" fill="#475569">Dados consultados direto na Receita Federal</text>
+</svg>
+</div>
+
+<ol style="padding-left:20px;font-size:15px;color:#334155;line-height:2">
+<li>No dashboard, clique em <strong>Meus CNPJs</strong> na barra superior</li>
+<li>Clique no botao amarelo <strong>+ Adicionar CNPJ</strong></li>
+<li>Digite o CNPJ (o sistema formata automaticamente)</li>
+<li>Opcional: coloque um apelido como "Matriz" ou "Filial SP"</li>
+<li>Clique em <strong>Consultar e Adicionar</strong>. Aguarde 2 segundos.</li>
+</ol>
+<div class="callout warn"><strong>Importante:</strong> se o email ou telefone aparecer <span style="color:#DC2626;font-weight:700">em vermelho</span>, significa que a Receita Federal nao tem esses dados. Atualize no e-CAC para receber intimacoes corretamente.</div>
+</div></section>
+<section id="p3" class="step-block"><div class="wrap">
+<div class="step-header"><div class="step-num">3</div><h2>Entenda o semaforo</h2></div>
+<p class="step-lead">Cada CNPJ tem 11 obrigacoes monitoradas. Cada uma tem 3 estados possiveis. Clique no CNPJ para ver todas e alterar o status conforme voce cumpre cada uma.</p>
+
+<div class="step-diag">
+<svg width="600" height="180" viewBox="0 0 600 180" xmlns="http://www.w3.org/2000/svg">
+<rect x="20" y="30" width="180" height="120" rx="12" fill="#FEE2E2" stroke="#FECACA"/>
+<circle cx="110" cy="70" r="18" fill="#DC2626"/>
+<text x="110" y="76" text-anchor="middle" font-family="Inter" font-size="18" font-weight="800" fill="#fff">✕</text>
+<text x="110" y="115" text-anchor="middle" font-family="Inter" font-size="14" font-weight="800" fill="#7F1D1D">VERMELHO</text>
+<text x="110" y="135" text-anchor="middle" font-family="Inter" font-size="11" fill="#991B1B">Pendente - risco</text>
+<rect x="210" y="30" width="180" height="120" rx="12" fill="#FEF3C7" stroke="#FDE68A"/>
+<circle cx="300" cy="70" r="18" fill="#F59E0B"/>
+<text x="300" y="77" text-anchor="middle" font-family="Inter" font-size="18" font-weight="800" fill="#fff">⟳</text>
+<text x="300" y="115" text-anchor="middle" font-family="Inter" font-size="14" font-weight="800" fill="#78350F">AMARELO</text>
+<text x="300" y="135" text-anchor="middle" font-family="Inter" font-size="11" fill="#92400E">Em andamento</text>
+<rect x="400" y="30" width="180" height="120" rx="12" fill="#D1FAE5" stroke="#A7F3D0"/>
+<circle cx="490" cy="70" r="18" fill="#10B981"/>
+<text x="490" y="77" text-anchor="middle" font-family="Inter" font-size="18" font-weight="800" fill="#fff">✓</text>
+<text x="490" y="115" text-anchor="middle" font-family="Inter" font-size="14" font-weight="800" fill="#065F46">VERDE</text>
+<text x="490" y="135" text-anchor="middle" font-family="Inter" font-size="11" fill="#047857">Conforme</text>
+</svg>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:24px">
+<div style="padding:20px;background:#FEE2E2;border-radius:12px"><strong style="color:#7F1D1D">Vermelho</strong><p style="font-size:13px;color:#991B1B;margin-top:4px">Voce nao cumpriu ou nao confirmou. Risco de multa.</p></div>
+<div style="padding:20px;background:#FEF3C7;border-radius:12px"><strong style="color:#78350F">Amarelo</strong><p style="font-size:13px;color:#92400E;margin-top:4px">Seu contador esta trabalhando. Acompanhar.</p></div>
+<div style="padding:20px;background:#D1FAE5;border-radius:12px"><strong style="color:#065F46">Verde</strong><p style="font-size:13px;color:#047857;margin-top:4px">Feito. Voce esta em conformidade.</p></div>
+</div>
+
+<div class="callout"><strong>Como alterar:</strong> no detalhe do CNPJ, clique no item da obrigacao. Cada clique avanca: Vermelho &rarr; Amarelo &rarr; Verde &rarr; volta pro Vermelho.</div>
+</div></section>
+
+<section id="p4" class="step-block" style="background:#F8FAFC"><div class="wrap">
+<div class="step-header"><div class="step-num">4</div><h2>Regularize o DTE na Receita</h2></div>
+<p class="step-lead">DTE = Domicilio Tributario Eletronico. Obrigatorio desde 01/01/2026. Sem cadastro, a Receita considera que voce recebeu intimacoes automaticamente.</p>
+
+<div class="step-diag">
+<svg width="600" height="160" viewBox="0 0 600 160" xmlns="http://www.w3.org/2000/svg">
+<rect x="20" y="30" width="120" height="100" rx="10" fill="#fff" stroke="#CBD5E1"/>
+<text x="80" y="60" text-anchor="middle" font-family="Inter" font-size="11" font-weight="700" fill="#475569">e-CAC</text>
+<text x="80" y="80" text-anchor="middle" font-family="Inter" font-size="9" fill="#94A3B8">Receita</text>
+<text x="80" y="95" text-anchor="middle" font-family="Inter" font-size="9" fill="#94A3B8">Federal</text>
+<rect x="30" y="105" width="100" height="18" rx="4" fill="#1565A8"/>
+<text x="80" y="118" text-anchor="middle" font-family="Inter" font-size="9" font-weight="700" fill="#fff">Login Gov.br</text>
+<path d="M 145 80 L 225 80" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4 3"/>
+<polygon points="220,76 228,80 220,84" fill="#94A3B8"/>
+<rect x="230" y="30" width="150" height="100" rx="10" fill="#fff" stroke="#CBD5E1"/>
+<text x="305" y="60" text-anchor="middle" font-family="Inter" font-size="11" font-weight="700" fill="#475569">Caixa Postal</text>
+<rect x="250" y="75" width="110" height="18" rx="4" fill="#F1F5F9"/>
+<text x="305" y="88" text-anchor="middle" font-family="Inter" font-size="9" fill="#475569">Aceitar termo DTE</text>
+<rect x="250" y="100" width="110" height="22" rx="4" fill="#10B981"/>
+<text x="305" y="115" text-anchor="middle" font-family="Inter" font-size="10" font-weight="700" fill="#fff">Aceitar</text>
+<path d="M 385 80 L 455 80" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4 3"/>
+<polygon points="450,76 458,80 450,84" fill="#94A3B8"/>
+<rect x="460" y="30" width="120" height="100" rx="10" fill="#D1FAE5" stroke="#10B981"/>
+<circle cx="520" cy="70" r="20" fill="#10B981"/>
+<text x="520" y="77" text-anchor="middle" font-family="Inter" font-size="18" font-weight="800" fill="#fff">✓</text>
+<text x="520" y="110" text-anchor="middle" font-family="Inter" font-size="11" font-weight="800" fill="#065F46">Cadastrado</text>
+<text x="520" y="125" text-anchor="middle" font-family="Inter" font-size="9" fill="#047857">no DTE</text>
+</svg>
+</div>
+
+<ol style="padding-left:20px;font-size:15px;color:#334155;line-height:2">
+<li>Acesse <a href="https://cav.receita.fazenda.gov.br/" target="_blank" style="color:#1565A8;font-weight:600">cav.receita.fazenda.gov.br</a></li>
+<li>Entre com <strong>Gov.br nivel Prata ou Ouro</strong> (ou certificado digital)</li>
+<li>No menu principal, clique em <strong>Caixa Postal</strong></li>
+<li>Leia o termo de adesao ao DTE e clique em <strong>Aceitar</strong></li>
+<li>Configure notificacao por email para receber avisos quando chegar mensagem</li>
+</ol>
+<div class="callout"><strong>Verifique semanalmente:</strong> mensagens nao lidas geram ciencia tacita. Ou seja, a Receita considera que voce viu mesmo sem abrir. Os prazos de defesa correm automaticamente.</div>
+<div class="step-actions"><a href="https://cav.receita.fazenda.gov.br/" target="_blank" class="btn btn-primary">Acessar e-CAC</a></div>
+</div></section>
+<section id="p5" class="step-block"><div class="wrap">
+<div class="step-header"><div class="step-num">5</div><h2>Regularize o DJE no CNJ</h2></div>
+<p class="step-lead">DJE = Domicilio Judicial Eletronico. Prazo era 31/03/2026. Sem cadastro, citacoes sao feitas por edital - voce pode perder processos por revelia automatica.</p>
+
+<div class="step-diag">
+<svg width="600" height="160" viewBox="0 0 600 160" xmlns="http://www.w3.org/2000/svg">
+<rect x="20" y="30" width="130" height="100" rx="10" fill="#fff" stroke="#CBD5E1"/>
+<text x="85" y="60" text-anchor="middle" font-family="Inter" font-size="11" font-weight="700" fill="#475569">domicilio</text>
+<text x="85" y="75" text-anchor="middle" font-family="Inter" font-size="11" font-weight="700" fill="#475569">eletronico</text>
+<text x="85" y="90" text-anchor="middle" font-family="Inter" font-size="9" fill="#94A3B8">.cnj.jus.br</text>
+<rect x="35" y="100" width="100" height="18" rx="4" fill="#1565A8"/>
+<text x="85" y="113" text-anchor="middle" font-family="Inter" font-size="9" font-weight="700" fill="#fff">Login Gov.br</text>
+<path d="M 155 80 L 225 80" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4 3"/>
+<polygon points="220,76 228,80 220,84" fill="#94A3B8"/>
+<rect x="230" y="30" width="160" height="100" rx="10" fill="#fff" stroke="#CBD5E1"/>
+<text x="310" y="60" text-anchor="middle" font-family="Inter" font-size="11" font-weight="700" fill="#475569">Vincular CNPJ</text>
+<rect x="250" y="75" width="120" height="18" rx="4" fill="#F1F5F9"/>
+<text x="310" y="88" text-anchor="middle" font-family="monospace" font-size="10" fill="#0F172A">00.000.000/0001-00</text>
+<rect x="250" y="100" width="120" height="20" rx="4" fill="#F59E0B"/>
+<text x="310" y="114" text-anchor="middle" font-family="Inter" font-size="10" font-weight="700" fill="#fff">Vincular</text>
+<path d="M 395 80 L 465 80" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4 3"/>
+<polygon points="460,76 468,80 460,84" fill="#94A3B8"/>
+<rect x="470" y="30" width="110" height="100" rx="10" fill="#D1FAE5" stroke="#10B981"/>
+<circle cx="525" cy="70" r="20" fill="#10B981"/>
+<text x="525" y="77" text-anchor="middle" font-family="Inter" font-size="18" font-weight="800" fill="#fff">✓</text>
+<text x="525" y="110" text-anchor="middle" font-family="Inter" font-size="10" font-weight="800" fill="#065F46">Ativo no</text>
+<text x="525" y="122" text-anchor="middle" font-family="Inter" font-size="10" font-weight="800" fill="#065F46">DJE</text>
+</svg>
+</div>
+
+<ol style="padding-left:20px;font-size:15px;color:#334155;line-height:2">
+<li>Acesse <a href="https://domicilio-eletronico.cnj.jus.br/" target="_blank" style="color:#1565A8;font-weight:600">domicilio-eletronico.cnj.jus.br</a></li>
+<li>Faca login com sua conta <strong>Gov.br</strong> (Prata ou Ouro)</li>
+<li>Selecione <strong>Pessoa Juridica</strong> e informe o CNPJ</li>
+<li>Confirme que voce tem poderes de representacao (socio-administrador)</li>
+<li>Cadastre um email para receber avisos de citacoes</li>
+</ol>
+<div class="callout warn"><strong>Atencao ao prazo:</strong> apos receber uma citacao eletronica, voce tem apenas <strong>3 dias uteis</strong> para tomar ciencia. Por isso, acesse o portal regularmente ou configure os alertas.</div>
+<div class="step-actions"><a href="https://domicilio-eletronico.cnj.jus.br/" target="_blank" class="btn btn-primary">Acessar Portal DJE</a></div>
+</div></section>
+
+<section style="padding:80px 24px;background:#0F172A;color:#fff;text-align:center">
+<div class="wrap">
+<div class="eyebrow" style="color:#F59E0B">Pronto para comecar?</div>
+<h2 style="font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-.02em;line-height:1.15;margin-bottom:16px">Crie sua conta e adicione seu primeiro CNPJ agora</h2>
+<p style="color:#94A3B8;max-width:500px;margin:0 auto 32px;font-size:17px">Gratuito para 1 CNPJ. Sem cartao. Sem compromisso.</p>
+<a href="/app.html" class="btn" style="background:#F59E0B;color:#fff;font-size:16px;padding:16px 32px">Criar minha conta agora</a>
+<p style="margin-top:32px;font-size:14px;color:#64748B">Precisa de ajuda? <a href="https://wa.me/5511930759163" target="_blank" style="color:#F59E0B">Fale com nossa equipe no WhatsApp</a></p>
+</div></section>
+
+<footer style="background:#0F172A;padding:32px 24px;border-top:1px solid #334155;text-align:center;color:#64748B;font-size:13px">
+<div class="wrap">
+&copy; 2026 DCG Corretora de Seguros LTDA &middot; CNPJ 16.383.565/0001-35 &middot; SUSEP 10.2010993.8
+</div>
+</footer>
+
+</body>
+</html>

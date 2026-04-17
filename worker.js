@@ -17,7 +17,7 @@ async function verificarCNPJs() {
   console.log('[' + new Date().toISOString() + '] 🔍 Iniciando verificacao diaria...');
   try {
     const cnpjs = await query(`
-      SELECT c.*, u.nome, u.email, u.telefone, u.plano
+      SELECT c.*, u.nome, u.email, u.telefone, u.plano, u.whatsapp_ativo, u.whatsapp_ativo
       FROM cnpjs c JOIN usuarios u ON c.usuario_id = u.id
       WHERE u.email_verificado = TRUE
     `);
@@ -55,7 +55,7 @@ async function verificarCNPJs() {
         });
 
         // Enviar WhatsApp (planos pagos)
-        if (c.plano !== 'free' && c.telefone) {
+        if (c.plano !== 'free' && c.telefone && c.whatsapp_ativo !== false) {
           const msg = '🔔 *Alerta Conformidade DCG*\n\n' + titulo + '\n\n' + info.mensagem + '\n\n🔗 ' + info.link + '\n\nAcesse seu painel: https://conformidade.dcgseguros.com.br/app.html';
           await enviarWhatsApp(c.telefone, msg);
         }
