@@ -1,0 +1,168 @@
+{
+  "dte": {
+    "nome": "DTE - Domicilio Tributario Eletronico",
+    "orgao": "Receita Federal",
+    "base_legal": "Lei 14.195/2021, IN RFB 2.154/2023",
+    "prazo": "Obrigatorio desde 01/01/2026 - permanente",
+    "risco": "Intimacoes correm prazo sem ciencia efetiva",
+    "link": "https://cav.receita.fazenda.gov.br",
+    "passos": [
+      "Acesse o e-CAC com certificado digital ou Gov.br nivel Prata/Ouro",
+      "No menu, clique em Comunicacao > Caixa Postal",
+      "Verifique se ha mensagens pendentes de leitura",
+      "Leia TODAS as mensagens - ao abrir, o prazo de ciencia e registrado",
+      "Repita semanalmente ou configure alerta de email no proprio e-CAC"
+    ]
+  },
+  "dje": {
+    "nome": "DJE - Domicilio Judicial Eletronico",
+    "orgao": "CNJ - Conselho Nacional de Justica",
+    "base_legal": "Resolucao CNJ 455/2022, Lei 14.195/2021, Art. 246 CPC",
+    "prazo": "Cadastro obrigatorio ate 31/03/2026 - VENCIDO",
+    "risco": "Citacoes judiciais podem nao chegar sem cadastro",
+    "link": "https://domicilio-eletronico.cnj.jus.br",
+    "passos": [
+      "Acesse domicilio-eletronico.cnj.jus.br",
+      "Faca login com conta Gov.br nivel Prata ou Ouro",
+      "Selecione Pessoa Juridica e informe o CNPJ",
+      "Confirme poderes de representacao (socio-administrador)",
+      "Cadastre email para receber avisos de citacoes",
+      "Acesse regularmente - prazo de ciencia e de 3 dias uteis"
+    ]
+  },
+  "ebef": {
+    "nome": "e-BEF - Declaracao de Beneficiario Final",
+    "orgao": "Receita Federal",
+    "base_legal": "IN RFB 2.119/2022, Lei 13.874/2019",
+    "prazo": "30 dias apos evento relevante ou anual ate 31/12",
+    "risco": "CNPJ pode ser suspenso se nao declarar",
+    "link": "https://cav.receita.fazenda.gov.br",
+    "passos": [
+      "Acesse o e-CAC com certificado digital",
+      "Va em Cadastros > CNPJ > Consulta Beneficiario Final",
+      "Verifique se a declaracao esta atualizada",
+      "Se houve alteracao de socios, envie nova declaracao em ate 30 dias",
+      "Se nada mudou, confirme anualmente ate 31/12"
+    ]
+  },
+  "ecf": {
+    "nome": "ECF - Escrituracao Contabil Fiscal",
+    "orgao": "Receita Federal",
+    "base_legal": "IN RFB 2.004/2021",
+    "prazo": "Anual - ultimo dia util de julho",
+    "risco": "Multa de 0,25% do lucro liquido por mes de atraso",
+    "link": "https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/declaracoes-e-demonstrativos/ecf",
+    "passos": [
+      "Obrigatorio para empresas no Lucro Real ou Presumido",
+      "Gerada no programa SPED da Receita Federal",
+      "Seu contador deve transmitir ate o ultimo dia util de julho",
+      "Verifique com seu contador se a ECF do ano anterior foi entregue",
+      "Guarde o recibo de entrega"
+    ]
+  },
+  "ecd": {
+    "nome": "ECD - Escrituracao Contabil Digital",
+    "orgao": "Receita Federal",
+    "base_legal": "IN RFB 2.003/2021",
+    "prazo": "Anual - ultimo dia util de maio",
+    "risco": "Multa de 0,5% do valor da receita bruta por mes de atraso",
+    "link": "https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/declaracoes-e-demonstrativos/sped-fiscal/escrituracao-contabil-digital-ecd",
+    "passos": [
+      "Obrigatorio para empresas no Lucro Real",
+      "Gerada no programa SPED da Receita Federal",
+      "Seu contador deve transmitir ate o ultimo dia util de maio",
+      "Verifique com seu contador se a ECD foi entregue",
+      "Guarde o recibo de entrega"
+    ]
+  },
+  "dctf": {
+    "nome": "DCTF - Declaracao de Debitos e Creditos Tributarios Federais",
+    "orgao": "Receita Federal",
+    "base_legal": "IN RFB 2.005/2021",
+    "prazo": "Mensal - 15o dia util do 2o mes seguinte",
+    "risco": "Multa de 2% ao mes sobre tributos declarados, minimo R$ 500",
+    "link": "https://cav.receita.fazenda.gov.br",
+    "passos": [
+      "Obrigacao mensal para empresas no Lucro Real e Presumido",
+      "Transmitida pelo programa DCTF da Receita",
+      "Seu contador deve transmitir mensalmente",
+      "Verifique no e-CAC > Declaracoes se todas estao entregues",
+      "Atrasos geram multa automatica"
+    ]
+  },
+  "defis": {
+    "nome": "DEFIS - Declaracao de Informacoes Socioeconomicas e Fiscais",
+    "orgao": "Receita Federal - Simples Nacional",
+    "base_legal": "Resolucao CGSN 140/2018",
+    "prazo": "Anual - 31 de marco",
+    "risco": "Impedimento de gerar DAS e risco de exclusao do Simples",
+    "link": "https://www8.receita.fazenda.gov.br/SimplesNacional",
+    "passos": [
+      "Obrigatorio para empresas no Simples Nacional",
+      "Acessar o portal do Simples Nacional",
+      "Seu contador transmite anualmente ate 31/03",
+      "Verifique se a DEFIS do ano anterior foi entregue",
+      "Sem DEFIS, nao e possivel gerar o DAS"
+    ]
+  },
+  "esocial": {
+    "nome": "eSocial - Sistema de Escrituracao Digital",
+    "orgao": "Receita Federal / MTE / INSS",
+    "base_legal": "Decreto 8.373/2014",
+    "prazo": "Mensal - eventos trabalhistas em tempo real",
+    "risco": "Multas trabalhistas e previdenciarias",
+    "link": "https://login.esocial.gov.br",
+    "passos": [
+      "Obrigatorio para todas as empresas com empregados",
+      "Eventos de admissao devem ser enviados ate 1 dia antes do inicio",
+      "Folha de pagamento mensal ate dia 15 do mes seguinte",
+      "Seu contador ou RH deve manter em dia",
+      "Verifique no portal se ha pendencias de envio"
+    ]
+  },
+  "pgr": {
+    "nome": "PGR/NR-1 - Programa de Gerenciamento de Riscos",
+    "orgao": "Ministerio do Trabalho e Emprego",
+    "base_legal": "NR-1 (Portaria MTE 6.730/2020), atualizada 2025",
+    "prazo": "Permanente - deve estar sempre atualizado",
+    "risco": "Multas de R$ 2.000 a R$ 200.000 por infracao",
+    "link": "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/seguranca-e-saude-no-trabalho/normas-regulamentadoras/nr-01-atualizada-2024.pdf",
+    "passos": [
+      "Toda empresa com empregados deve ter o PGR",
+      "Contrate um engenheiro ou tecnico de seguranca do trabalho",
+      "O PGR deve identificar riscos e definir medidas preventivas",
+      "Mantenha o documento atualizado e disponivel para fiscalizacao",
+      "DCG oferece diagnostico NR-1 gratuito em dcgrhsemriscos.business"
+    ]
+  },
+  "pcmso": {
+    "nome": "PCMSO - Programa de Controle Medico de Saude Ocupacional",
+    "orgao": "Ministerio do Trabalho e Emprego",
+    "base_legal": "NR-7 (Portaria MTE 6.734/2020)",
+    "prazo": "Permanente - exames admissionais, periodicos e demissionais",
+    "risco": "Multas e responsabilidade civil em caso de acidente",
+    "link": "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/seguranca-e-saude-no-trabalho/normas-regulamentadoras/nr-07-atualizada-2022.pdf",
+    "passos": [
+      "Toda empresa com empregados deve ter o PCMSO",
+      "Contrate um medico do trabalho",
+      "Realize exames admissionais ANTES do inicio das atividades",
+      "Exames periodicos conforme riscos identificados no PGR",
+      "Mantenha o ASO (Atestado de Saude Ocupacional) arquivado"
+    ]
+  },
+  "lgpd": {
+    "nome": "LGPD - Lei Geral de Protecao de Dados",
+    "orgao": "ANPD - Autoridade Nacional de Protecao de Dados",
+    "base_legal": "Lei 13.709/2018",
+    "prazo": "Permanente - adequacao continua",
+    "risco": "Multa de ate 2% do faturamento, limitada a R$ 50 milhoes",
+    "link": "https://www.gov.br/anpd/pt-br",
+    "passos": [
+      "Nomeie um Encarregado de Dados (DPO)",
+      "Mapeie quais dados pessoais sua empresa coleta e trata",
+      "Crie Politica de Privacidade e Termos de Uso",
+      "Implemente consentimento para coleta de dados",
+      "Tenha canal para titulares exercerem direitos (acesso, exclusao etc)"
+    ]
+  }
+}
